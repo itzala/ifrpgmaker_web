@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{parent()}} | Index des histoires {% endblock %}
+
+{% block titre %} Liste des histoires {% endblock %}       
+
+{% block body %}
+    {{ parent() }}
+        
+    <section>
+        <p>
+            Sur cette page, vous trouverez la liste des histoires d&eacute;j&agrave; cr&eacute;&eacute;es avec leur cr&eacute;ateur.
+        </p>
+    </section>
+{% endblock %}

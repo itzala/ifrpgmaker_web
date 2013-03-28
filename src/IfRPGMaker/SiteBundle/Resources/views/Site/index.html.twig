@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Accueil {% endblock %}
+
+{% block body %}     
+     {{ parent() }}    
+    
+    <section>
+        <p>
+            Bienvenue sur le site du cr&eacute;ateur de jeux RPG dernier cri. Gr&acirc;ce &agrave; celui ci, vous pourrez cr&eacute;er
+            les histoires et les jeux les plus originaux !
+        </p>
+    </section>
+{% endblock %}

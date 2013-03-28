@@ -22,6 +22,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             
             new IfRPGMaker\UserBundle\UserBundle(),
+            new IfRPGMaker\HistoireBundle\HistoireBundle(),
+            new IfRPGMaker\SiteBundle\SiteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

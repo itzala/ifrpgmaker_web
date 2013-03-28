@@ -1,0 +1,17 @@
+section, footer, nav
+{
+    border : 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;    
+}
+
+h1
+{
+    text-align: center;
+}
+
+.item_menu
+{
+    display: inline-block;
+}

@@ -1,0 +1,3 @@
+histoire_index:
+    pattern:  /liste
+    defaults: { _controller: HistoireBundle:Histoire:index }

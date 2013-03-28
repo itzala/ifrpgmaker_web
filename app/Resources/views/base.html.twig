@@ -2,12 +2,34 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}IfRPGMaker{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/site/css/site.css') }}"/>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}                        
+            <h1>{% block titre %}{% endblock %}</h1>
+            
+            {% block menu %}
+                <nav>
+                    <ul>
+                        <li class="item_menu"><a href="{{ path("site_accueil") }}">Accueil</a></li>
+                        <li class="item_menu"><a href="{{ path("histoire_index") }}">Histoire</a></li>
+                        <li class="item_menu"><a href="{{ path("joueurs_index") }}">Joueurs</a></li>                        
+                    </ul>        
+                </nav>
+            {% endblock %}
+            
+        {% endblock %}
+        
+        {% block footer %}
+            <footer>
+                <span>&copy;</span> Tous droits r&eacute;serv&eacute;s
+            </footer>            
+        {% endblock %}
+        
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,3 +1,7 @@
-user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: UserBundle:Default:index }
+fos_user_bundle:
+    resource: "@UserBundle/Resources/config/routing_fos.yml"
+    prefix:   /
+    
+joueurs_index:
+    pattern: /joueurs/liste
+    defaults: { _controller: "UserBundle:Joueur:index" }

@@ -1,3 +1,11 @@
+site:
+    resource: "@SiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+histoire:
+    resource: "@HistoireBundle/Resources/config/routing.yml"
+    prefix:   /histoire
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
