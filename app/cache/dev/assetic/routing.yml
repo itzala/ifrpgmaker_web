@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /opt/lampp/htdocs/bd_fac/site_web/app/config/routing_dev.yml
