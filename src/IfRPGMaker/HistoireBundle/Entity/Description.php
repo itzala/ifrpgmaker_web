@@ -61,4 +61,8 @@ class Description
     {
         return $this->contenu;
     }
+    
+    public function __toString() {
+        return $this->contenu;
+    }
 }

@@ -1,0 +1,30 @@
+intro:
+    pattern:  /
+    defaults: { _controller: "HistoireBundle:Intro:index" }
+
+intro_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "HistoireBundle:Intro:show" }
+
+intro_new:
+    pattern:  /new
+    defaults: { _controller: "HistoireBundle:Intro:new" }
+
+intro_create:
+    pattern:  /create
+    defaults: { _controller: "HistoireBundle:Intro:create" }
+    requirements: { _method: post }
+
+intro_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "HistoireBundle:Intro:edit" }
+
+intro_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "HistoireBundle:Intro:update" }
+    requirements: { _method: post }
+
+intro_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "HistoireBundle:Intro:delete" }
+    requirements: { _method: post }

@@ -40,16 +40,24 @@ class Choix
     
     /**
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Choix")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      * 
      */
     private $parent;
     
     
-    public function __construct($event) {
-        $this->intro = $event->getIntro();
-        $this->description = $event->getDescription();
+    public function __construct($event = NULL) {
+        if ($event == NULL) {
+            $this->intro = " ";
+            $this->description = " ";
+        }
+        else {
+            $this->intro = $event->getIntro();
+            $this->description = $event->getDescription();
+        }
     }
+    
+    
 
 
     /**
@@ -152,5 +160,12 @@ class Choix
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public function __toString() {
+        if ($this->intro == NULL) {
+            return " ";
+        }
+        return $this->intro->getContenu();
     }
 }

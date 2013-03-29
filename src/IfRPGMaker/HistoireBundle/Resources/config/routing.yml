@@ -1,3 +1,16 @@
+HistoireBundle_choix:
+        resource: "@HistoireBundle/Resources/config/routing/choix.yml"
+        prefix:   /choix
+
+HistoireBundle_description:
+        resource: "@HistoireBundle/Resources/config/routing/description.yml"
+        prefix:   /description
+
+HistoireBundle_intro:
+        resource: "@HistoireBundle/Resources/config/routing/intro.yml"
+        prefix:   /intro
+
+
 histoire_index:
     pattern:  /liste
     defaults: { _controller: HistoireBundle:Histoire:index }

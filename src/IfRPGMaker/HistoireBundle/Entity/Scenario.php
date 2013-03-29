@@ -23,7 +23,6 @@ class Scenario
     
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Histoire")
      * @ORM\JoinColumn(nullable=false)
      * 
      */
@@ -41,29 +40,6 @@ class Scenario
     public function __construct($histoire) {
         $this->auteur = $histoire->getAuteur();
         $this->titre_histoire = $histoire;
-    }
-
-    /**
-     * Set histoire
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Histoire $histoire
-     * @return Scenario
-     */
-    public function setHistoire(\IfRPGMaker\HistoireBundle\Entity\Histoire $histoire)
-    {
-        $this->histoire = $histoire;
-    
-        return $this;
-    }
-
-    /**
-     * Get histoire
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Histoire 
-     */
-    public function getHistoire()
-    {
-        return $this->histoire;
     }
 
     /**
