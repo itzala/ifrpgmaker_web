@@ -5,10 +5,10 @@ namespace IfRPGMaker\HistoireBundle\Form;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManager;
-use IfRPGMaker\HistoireBundle\Entity\Choix;
+use IfRPGMaker\HistoireBundle\Entity\Evenement;
 
 
-class ChoixHandler
+class EvenementHandler
 {
     private $form;
     private $request;
@@ -36,9 +36,9 @@ class ChoixHandler
         return false;
     }
 
-    public function onSuccess(Choix $choix)
+    public function onSuccess(Evenement $event)
     {
-        $this->em->persist($choix);
+        $this->em->persist($event);
         $this->em->flush();
     }
 }

@@ -1,16 +1,16 @@
 liste_choix:
-    pattern: /
+    pattern: /index
     defaults: { _controller: "HistoireBundle:Choix:index" }
     
 new_choix:
-    pattern: /
+    pattern: /new
     defaults: { _controller: "HistoireBundle:Choix:new" }
 
 edit_choix:
-    pattern: /
+    pattern: /edit
     defaults: { _controller: "HistoireBundle:Choix:edit" }
     
 delete_choix:
-    pattern: /
+    pattern: /delete
     defaults: { _controller: "HistoireBundle:Choix:delete" }
     
