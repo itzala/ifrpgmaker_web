@@ -4,37 +4,49 @@ namespace IfRPGMaker\HistoireBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use HistoireBundle\Form\ChoixHandler;
-use HistoireBundle\Form\ChoixType;
-use HistoireBundle\Entity\Choix;
+use HistoireBundle\Form\EvenementHandler;
+use HistoireBundle\Form\EvenementType;
+use HistoireBundle\Entity\Evenement;
 
 /**
  * Description controller.
  *
  */
-class ChoixController extends Controller
+class EvenementController extends Controller
 {
         public function indexAction()
         {
-            return $this->render("HistoireBundle:Choix:index.html.twig");
+            return $this->render("HistoireBundle:Evenement:index.html.twig");
         }
         
-        public function showAction(Choix $choix)
+        public function showAction(\IfRPGMaker\HistoireBundle\Entity\Evenement $event)
         {
-            return $this->render("HistoireBundle:Choix:show.html.twig");
+            return $this->render("HistoireBundle:Evenement:show.html.twig");
         }
         
         public function newAction()
         {
-            return $this->render("HistoireBundle:Choix:new.html.twig");
+            $entity = new \IfRPGMaker\HistoireBundle\Entity\Evenement;
+            
+            $form = $this->createForm(new \IfRPGMaker\HistoireBundle\Form\EvenementType(), $entity);
+            
+            return $this->render("HistoireBundle:Evenement:new.html.twig", array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            ));
         }
         
-        public function editAction(Choix $choix)
+        public function editAction($event)
         {
-            return $this->render("HistoireBundle:Choix:edit.html.twig");
+            $editForm = $this->createForm(new \IfRPGMaker\HistoireBundle\Form\EvenementType(), $event);
+            
+            return $this->render("HistoireBundle:Evenement:edit.html.twig", array(
+                'entity' => $event,
+                'editForm' => $editForm,
+            ));
         }
                 
-        /*public function deleteAction($id_choix)
+        /*public function deleteAction($id_event)
         {
             
         }

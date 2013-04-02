@@ -1,3 +1,7 @@
+HistoireBundle_evenement:
+        resource: "@HistoireBundle/Resources/config/routing/evenement.yml"
+        prefix:   /event
+        
 HistoireBundle_choix:
         resource: "@HistoireBundle/Resources/config/routing/choix.yml"
         prefix:   /choix
