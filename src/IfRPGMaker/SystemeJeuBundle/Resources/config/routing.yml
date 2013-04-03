@@ -1,0 +1,3 @@
+system_jeu_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SystemJeuBundle:Default:index }

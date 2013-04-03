@@ -1,0 +1,3 @@
+perso_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PersoBundle:Default:index }

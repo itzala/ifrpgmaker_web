@@ -24,6 +24,11 @@ class AppKernel extends Kernel
             new IfRPGMaker\UserBundle\UserBundle(),
             new IfRPGMaker\HistoireBundle\HistoireBundle(),
             new IfRPGMaker\SiteBundle\SiteBundle(),
+            new IfRPGMaker\ActionsBundle\ActionsBundle(),
+            new IfRPGMaker\DialogueBundle\DialogueBundle(),
+            new IfRPGMaker\PersoBundle\PersoBundle(),
+            new IfRPGMaker\SystemeJeuBundle\SystemJeuBundle(),
+            new IfRPGMaker\ContraintesBundle\ContraintesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

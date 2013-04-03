@@ -1,3 +1,23 @@
+contraintes:
+    resource: "@ContraintesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+system_jeu:
+    resource: "@SystemJeuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+perso:
+    resource: "@PersoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dialogue:
+    resource: "@DialogueBundle/Resources/config/routing.yml"
+    prefix:   /
+
+actions:
+    resource: "@ActionsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 site:
     resource: "@SiteBundle/Resources/config/routing.yml"
     prefix:   /
