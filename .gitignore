@@ -1,6 +1,13 @@
-/nbproject
-/app/cache
-/app/logs
-/app/config/parameters.yml
-/web
-/vendor
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
