@@ -1,3 +1,0 @@
-PersoBundle_perso:
-        resource: "@PersoBundle/Resources/config/routing/personnage.yml"
-        prefix:   /personnage

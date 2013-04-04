@@ -1,3 +1,0 @@
-actions_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ActionsBundle:Default:index }

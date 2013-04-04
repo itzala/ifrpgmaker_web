@@ -1,7 +1,0 @@
-parameters:
-#    actions.example.class: IfRPGMaker\ActionsBundle\Example
-
-services:
-#    actions.example:
-#        class: %actions.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

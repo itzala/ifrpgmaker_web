@@ -1,3 +1,0 @@
-contraintes_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ContraintesBundle:Default:index }

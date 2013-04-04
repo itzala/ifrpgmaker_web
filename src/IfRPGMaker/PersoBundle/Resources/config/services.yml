@@ -1,7 +1,0 @@
-parameters:
-#    perso.example.class: IfRPGMaker\PersoBundle\Example
-
-services:
-#    perso.example:
-#        class: %perso.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
