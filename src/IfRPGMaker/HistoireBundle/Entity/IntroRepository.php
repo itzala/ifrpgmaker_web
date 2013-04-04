@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class IntroRepository extends EntityRepository
 {
+    public function find($id)
+    {
+        $sql = "SELECT * FROM Intro WHERE id = ".$id;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.id = :id")
+                ->setParameter("id", $id)
+                ->getQuery();
+                
+       $res = $query->getResult();      
+        
+        return array("sql" => $sql, "entity"=> $res[0]);        
+    }
 }

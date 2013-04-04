@@ -19,9 +19,12 @@ class ChoixController extends Controller
             return $this->render("HistoireBundle:Choix:index.html.twig");
         }
         
-        public function showAction(Choix $choix)
+        public function showAction($id)
         {
-            return $this->render("HistoireBundle:Choix:show.html.twig");
+            $em = $this->getDoctrine()->getEntityManager();
+            $repository = $em->getRepository("HistoireBundle:Choix");
+            
+            return $this->render("HistoireBundle:Choix:show.html.twig");                
         }
         
         public function newAction()

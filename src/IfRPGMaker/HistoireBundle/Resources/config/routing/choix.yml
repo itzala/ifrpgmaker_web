@@ -13,4 +13,7 @@ edit_choix:
 delete_choix:
     pattern: /delete
     defaults: { _controller: "HistoireBundle:Choix:delete" }
-    
+
+choix_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "HistoireBundle:Choix:show" }

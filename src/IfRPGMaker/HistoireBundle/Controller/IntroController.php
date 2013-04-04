@@ -23,6 +23,8 @@ class IntroController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('HistoireBundle:Intro')->findAll();
+        //$res = $em->getRepository('HistoireBundle:Intro')->find($id);
+        //$entities = $res["entities"];
 
         return $this->render('HistoireBundle:Intro:index.html.twig', array(
             'entities' => $entities,
@@ -37,8 +39,8 @@ class IntroController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
-
+        $res = $em->getRepository('HistoireBundle:Intro')->find($id);
+        $entity = $res["entity"];        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
         }
@@ -46,7 +48,7 @@ class IntroController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('HistoireBundle:Intro:show.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $entity,            
             'delete_form' => $deleteForm->createView(),        ));
     }
 
@@ -97,7 +99,8 @@ class IntroController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
+        $res = $em->getRepository('HistoireBundle:Intro')->find($id);
+        $entity = $res["entity"];
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
@@ -121,7 +124,8 @@ class IntroController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
+        $res = $em->getRepository('HistoireBundle:Intro')->find($id);
+        $entity = $res["entity"];
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
@@ -156,7 +160,8 @@ class IntroController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
+            $res = $em->getRepository('HistoireBundle:Intro')->find($id);
+            $entity = $res["entity"];
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Intro entity.');
