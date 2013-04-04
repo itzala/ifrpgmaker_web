@@ -14,4 +14,16 @@ h1
 .item_menu
 {
     display: inline-block;
+    margin-right: 20px;
+}
+
+.item_menu > .to_do
+{
+    color : red;
+    text-decoration: none;
+}
+
+.item_menu > .doing
+{
+    color: orange;
 }

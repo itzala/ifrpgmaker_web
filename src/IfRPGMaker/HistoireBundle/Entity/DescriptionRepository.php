@@ -12,4 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class DescriptionRepository extends EntityRepository
 {
+    public function find($id)
+    {
+        $sql = "SELECT * FROM Description WHERE id = ".$id;
+        
+        $query = $this->createQueryBuilder("d")
+                ->where("d.id = :id")
+                ->setParameter("id", $id)
+                ->getQuery();
+                
+       $res = $query->getResult();      
+        
+        return array("sql" => $sql, "entity"=> $res[0]);        
+    }
+    
+    public function findByContenu($contenu)
+    {
+        $sql = "SELECT * FROM Description WHERE contenu = " .$contenu;
+        
+        $query = $this->createQueryBuilder("d")
+                ->where("d.contenu = :contenu")
+                ->setParameter("contenu", $contenu)
+                ->getQuery();
+        
+        $res = $query->getResult();      
+        
+        return array("sql" => $sql, "entity"=> $res);             
+    }        
 }

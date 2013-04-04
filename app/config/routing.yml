@@ -2,8 +2,8 @@ contraintes:
     resource: "@ContraintesBundle/Resources/config/routing.yml"
     prefix:   /
 
-system_jeu:
-    resource: "@SystemJeuBundle/Resources/config/routing.yml"
+systeme_jeu:
+    resource: "@SystemeJeuBundle/Resources/config/routing.yml"
     prefix:   /
 
 perso:

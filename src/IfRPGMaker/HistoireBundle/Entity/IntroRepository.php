@@ -25,4 +25,18 @@ class IntroRepository extends EntityRepository
         
         return array("sql" => $sql, "entity"=> $res[0]);        
     }
+    
+    public function findByContenu($contenu)
+    {
+        $sql = "SELECT * FROM Intro WHERE contenu = " .$contenu;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.contenu = :contenu")
+                ->setParameter("contenu", $contenu)
+                ->getQuery();
+        
+        $res = $query->getResult();      
+        
+        return array("sql" => $sql, "entity"=> $res);             
+    }        
 }
