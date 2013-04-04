@@ -1,0 +1,12 @@
+ContraintesBundle_element_contrainte:
+        resource: "@ContraintesBundle/Resources/config/routing/element_contrainte.yml"
+        prefix:   /
+        
+ContraintesBundle_contrainte:
+        resource: "@ContraintesBundle/Resources/config/routing/contrainte.yml"
+        prefix:   /
+
+
+contraintes_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ContraintesBundle:Default:index }

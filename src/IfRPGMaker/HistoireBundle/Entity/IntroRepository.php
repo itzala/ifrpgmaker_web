@@ -3,6 +3,7 @@
 namespace IfRPGMaker\HistoireBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\DBAL\DriverManager;
 
 /**
  * IntroRepository
@@ -21,9 +22,9 @@ class IntroRepository extends EntityRepository
                 ->setParameter("id", $id)
                 ->getQuery();
                 
-       $res = $query->getResult();      
+       $res = $query->getResult();
         
-        return array("sql" => $sql, "entity"=> $res[0]);        
+        return array("sql" => $sql, "entity"=> $res[0]);
     }
     
     public function findByContenu($contenu)
@@ -35,8 +36,27 @@ class IntroRepository extends EntityRepository
                 ->setParameter("contenu", $contenu)
                 ->getQuery();
         
-        $res = $query->getResult();      
+        $res = $query->getResult();
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function insert($entity) {
+        $sql = "INSERT INTO Intro (contenu) VALUES ('".$entity->getContenu()."')";
+        $conn = DriverManager::getConnection($params, $config);
         
-        return array("sql" => $sql, "entity"=> $res);             
-    }        
+        $conn->insert('Intro', array('contenu' => $entity->getContenu()));
+    }
+    
+    public function delete($entity) {
+        $sql = "DELETE FROM Intro WHERE id=".$entity->getId();
+        
+        $conn = DriverManager::getConnection($params, $config);
+        $conn->delete('Intro', array());
+    }
+    
+    public function update($entity) {
+        $sql = "UPDATE Intro SET contenu='".$entity->getContenu."' WHERE id =".$entity->getId();
+        
+        
+    }
 }

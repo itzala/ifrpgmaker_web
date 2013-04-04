@@ -1,0 +1,7 @@
+parameters:
+#    contraintes.example.class: IfRPGMaker\ContraintesBundle\Example
+
+services:
+#    contraintes.example:
+#        class: %contraintes.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

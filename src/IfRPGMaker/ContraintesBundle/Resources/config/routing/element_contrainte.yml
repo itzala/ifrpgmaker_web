@@ -1,0 +1,30 @@
+element_contrainte:
+    pattern:  /
+    defaults: { _controller: "ContraintesBundle:Contrainte:index" }
+
+element_contrainte_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ContraintesBundle:Contrainte:show" }
+
+element_contrainte_new:
+    pattern:  /new
+    defaults: { _controller: "ContraintesBundle:Contrainte:new" }
+
+element_contrainte_create:
+    pattern:  /create
+    defaults: { _controller: "ContraintesBundle:Contrainte:create" }
+    requirements: { _method: post }
+
+element_contrainte_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ContraintesBundle:Contrainte:edit" }
+
+element_contrainte_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ContraintesBundle:Contrainte:update" }
+    requirements: { _method: post }
+
+element_contrainte_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ContraintesBundle:Contrainte:delete" }
+    requirements: { _method: post }
