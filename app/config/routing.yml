@@ -4,6 +4,13 @@ dialogues:
 
 actions:
     resource: "@ActionsBundle/Resources/config/routing.yml"
+    
+systeme_jeu:
+    resource: "@SystemeJeuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+personnage:
+    resource: "@PersonnageBundle/Resources/config/routing.yml"
     prefix:   /
 
 contraintes:

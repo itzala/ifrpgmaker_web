@@ -1,0 +1,7 @@
+personnagebundle_personnage:
+    resource: "@PersonnageBundle/Resources/config/routing/personnage.yml"
+    prefix:   /personnage
+    
+personnagebundle_caract_perso_histoire:
+    resource: "@PersonnageBundle/Resources/config/routing/caract_perso_histoire.yml"
+    prefix:   /caract_perso_histoire

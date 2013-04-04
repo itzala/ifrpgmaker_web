@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: /autofs/netapp/travail/amiviell/web/ifrpgmaker_web/app/config/routing_dev.yml
+    resource: /autofs/netapp/www/nendredi/ifrpgmaker_web/app/config/routing_dev.yml

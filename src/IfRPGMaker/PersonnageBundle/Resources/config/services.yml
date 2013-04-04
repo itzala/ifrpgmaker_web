@@ -1,0 +1,7 @@
+parameters:
+#    personnage.example.class: IfRPGMaker\PersonnageBundle\Example
+
+services:
+#    personnage.example:
+#        class: %personnage.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
