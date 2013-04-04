@@ -1,0 +1,30 @@
+personnage:
+    pattern:  /
+    defaults: { _controller: "PersonnageBundle:Personnage:index" }
+
+personnage_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PersonnageBundle:Personnage:show" }
+
+personnage_new:
+    pattern:  /new
+    defaults: { _controller: "PersonnageBundle:Personnage:new" }
+
+personnage_create:
+    pattern:  /create
+    defaults: { _controller: "PersonnageBundle:Personnage:create" }
+    requirements: { _method: post }
+
+personnage_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PersonnageBundle:Personnage:edit" }
+
+personnage_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PersonnageBundle:Personnage:update" }
+    requirements: { _method: post }
+
+personnage_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PersonnageBundle:Personnage:delete" }
+    requirements: { _method: post }

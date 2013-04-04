@@ -1,0 +1,7 @@
+parameters:
+#    systeme_jeu.example.class: IfRPGMaker\SystemeJeuBundle\Example
+
+services:
+#    systeme_jeu.example:
+#        class: %systeme_jeu.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

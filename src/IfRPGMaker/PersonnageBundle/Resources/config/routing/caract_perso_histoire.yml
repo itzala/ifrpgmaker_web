@@ -1,0 +1,30 @@
+caract_perso_histoire:
+    pattern:  /
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:index" }
+
+caract_perso_histoire_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:show" }
+
+caract_perso_histoire_new:
+    pattern:  /new
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:new" }
+
+caract_perso_histoire_create:
+    pattern:  /create
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:create" }
+    requirements: { _method: post }
+
+caract_perso_histoire_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:edit" }
+
+caract_perso_histoire_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:update" }
+    requirements: { _method: post }
+
+caract_perso_histoire_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PersonnageBundle:CaractPersoHistoire:delete" }
+    requirements: { _method: post }
