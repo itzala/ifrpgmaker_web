@@ -24,13 +24,11 @@ class AppKernel extends Kernel
             new IfRPGMaker\UserBundle\UserBundle(),
             new IfRPGMaker\HistoireBundle\HistoireBundle(),
             new IfRPGMaker\SiteBundle\SiteBundle(),
-            new IfRPGMaker\ActionsBundle\ActionsBundle(),
-            new IfRPGMaker\DialogueBundle\DialogueBundle(),
-            new IfRPGMaker\PersoBundle\PersoBundle(),
-            new IfRPGMaker\SystemeJeuBundle\SystemeJeuBundle(),
             new IfRPGMaker\ContraintesBundle\ContraintesBundle(),
+            new IfRPGMaker\ActionsBundle\ActionsBundle(),
+            new IfRPGMaker\DialoguesBundle\DialoguesBundle(),
         );
-
+        
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
