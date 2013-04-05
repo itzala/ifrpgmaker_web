@@ -38,3 +38,11 @@ footer
     display: inline-block;
     margin-right: 10px;
 }
+
+aside
+{
+    float: right;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding : 1em;    
+}
