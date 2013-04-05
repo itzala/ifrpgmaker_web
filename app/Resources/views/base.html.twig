@@ -28,14 +28,21 @@
             {% endblock %}
         
             {% block flash %}
-            
-            {% for f in app.session.flashbag %}
-                    <div>
-                        {{ dump(f) }}
-                    </div>
-                {% endfor %}
+            {% if app.session.flashbag | length > 0%}
+                <aside>
+                {% for f in app.session.flashbag %}
+                        <p>
+                            {% for elem in f %}
+                                {{ elem | raw}}
+                            {% else %}
+                                {{ f | raw}}
+                            {% endfor %}
+                        </p>
+                    {% endfor %}
+                </aside>
+             {% endif %}
             {% endblock %}
-            
+           
         {% endblock %}
         
         {% block footer %}
@@ -51,10 +58,7 @@
                     $(".to_do").click(function(event){
                         event.preventDefault();
                         alert("Merci de bien vouloir vérifier les routes du bundle. Ensuite, éditez le fichier /app/Resources/views/base.html.twig et supprimez l'attribut class du lien");
-                    })
-                    $(".doing").click(function(){                        
-                        alert("Partie du site en construction :)");
-                    })
+                    })                    
                 });                
             </script>
         {% endblock %}
