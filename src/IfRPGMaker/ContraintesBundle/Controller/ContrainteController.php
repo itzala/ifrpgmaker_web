@@ -1,16 +1,13 @@
 <?php
+namespace IfRPGMaker\ContraintesBundle\Controller;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * Description of ContrainteController
  *
  * @author nendredi
  */
-class ContrainteController {
+class ContrainteController extends Controller{
     //put your code here
 }
 

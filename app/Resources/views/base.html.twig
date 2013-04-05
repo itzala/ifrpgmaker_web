@@ -26,6 +26,15 @@
                     </ul>        
                 </nav>
             {% endblock %}
+        
+            {% block flash %}
+            
+            {% for f in app.session.flashbag %}
+                    <div>
+                        {{ dump(f) }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
             
         {% endblock %}
         

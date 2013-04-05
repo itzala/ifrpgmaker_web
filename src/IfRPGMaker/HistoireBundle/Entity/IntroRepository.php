@@ -13,6 +13,11 @@ use Doctrine\DBAL\DriverManager;
  */
 class IntroRepository extends EntityRepository
 {
+    public function getConnection()
+    {
+        return $this->_em->getConnection();
+    }
+    
     public function find($id)
     {
         $sql = "SELECT * FROM Intro WHERE id = ".$id;
@@ -23,8 +28,11 @@ class IntroRepository extends EntityRepository
                 ->getQuery();
                 
        $res = $query->getResult();
-        
-        return array("sql" => $sql, "entity"=> $res[0]);
+        if (empty($res))
+            $res = NULL;
+        else
+            $res = $res[0];
+        return array("sql" => $sql, "entity"=> $res);
     }
     
     public function findByContenu($contenu)
@@ -40,23 +48,39 @@ class IntroRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
+    public function findAll()
+    {
+        $sql = "SELECT * FROM Intro";
+        
+        $query = $this->createQueryBuilder("i")->getQuery();
+        $res = $query->getResult();
+        
+        return array("sql" => $sql, "entities" => $res);
+    }
+    
     public function insert($entity) {
         $sql = "INSERT INTO Intro (contenu) VALUES ('".$entity->getContenu()."')";
-        $conn = DriverManager::getConnection($params, $config);
+        $conn = $this->getConnection();
         
         $conn->insert('Intro', array('contenu' => $entity->getContenu()));
+        
+        return $sql;
     }
     
     public function delete($entity) {
         $sql = "DELETE FROM Intro WHERE id=".$entity->getId();
         
-        $conn = DriverManager::getConnection($params, $config);
-        $conn->delete('Intro', array());
+        $conn = $this->getConnection();
+        $conn->delete('Intro', array('id' => $entity->getId()));
+        
+        return $sql;
     }
     
     public function update($entity) {
         $sql = "UPDATE Intro SET contenu='".$entity->getContenu."' WHERE id =".$entity->getId();
         
+        $conn = $this->getConnection();
         
+        return $sql;
     }
 }

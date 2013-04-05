@@ -21,14 +21,12 @@ class IntroController extends Controller
     }
     
     
-    public function flashSql($sql) {
+    public function setFlash($titre, $message) {
         $this->get('session')->setFlash(
-                'sql',
-                'La requête exécutée est la suivante :\n'.$sql
+                $titre,
+                $message
                 );
     }
-
-
     
     /**
      * Lists all Intro entities.
@@ -94,9 +92,14 @@ class IntroController extends Controller
             $rep = $this->getRepository();
             $sql = $rep->insert($entity);
             
-            $this->flashSql($sql);
+            $message = 'La requête exécutée est la suivante :\n'.$sql;
+            $this->setFlash("sql", $message);
 
-            return $this->redirect($this->generateUrl('intro_show', $entity->getArrayIds()));
+            $message = var_dump($entity->getArrayIds());
+            //$this->setFlash("array-ids", $message);
+            echo $message;
+            return $this->redirect($this->generateUrl('intro'));
+            //return $this->redirect($this->generateUrl('intro_show', $entity->getArrayIds()));
         }
 
         return $this->render('HistoireBundle:Intro:new.html.twig', array(
@@ -150,9 +153,9 @@ class IntroController extends Controller
         if ($editForm->isValid()) {
             $sql = $rep->update($entity);
             
-            $this->flashSql($sql);
+            $this->setFlash("sql", $sql);
 
-            return $this->redirect($this->generateUrl('intro_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('intro_edit', $entity->getArrayIds()));
         }
 
         return $this->render('HistoireBundle:Intro:edit.html.twig', array(
@@ -183,7 +186,7 @@ class IntroController extends Controller
 
             $sql = $this->getRepository()->delete($entity);
             
-            $this->flashSql($sql);
+             $this->setFlash("sql", $sql);
         }
 
         return $this->redirect($this->generateUrl('intro'));

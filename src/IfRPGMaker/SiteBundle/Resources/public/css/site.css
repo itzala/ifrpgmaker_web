@@ -19,11 +19,22 @@ h1
 
 .item_menu > .to_do
 {
-    color : red;
+    color : #515151;
     text-decoration: none;
 }
 
 .item_menu > .doing
 {
-    color: orange;
+    color: #000d14;
+}
+
+footer
+{
+    text-align: center;
+}
+
+.record_actions > li
+{
+    display: inline-block;
+    margin-right: 10px;
 }

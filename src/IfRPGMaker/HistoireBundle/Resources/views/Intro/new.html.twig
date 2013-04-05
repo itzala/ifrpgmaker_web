@@ -1,16 +1,22 @@
-<h1>Intro creation</h1>
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block titre %} Intro creation {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>
+        <form action="{{ path('intro_create') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <p>
+                <button type="submit">Create</button>
+            </p>
+        </form>
 
-<form action="{{ path('intro_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('intro') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('intro') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

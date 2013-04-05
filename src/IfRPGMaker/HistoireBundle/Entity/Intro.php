@@ -66,4 +66,9 @@ class Intro
     public function __toString() {
         return $this->contenu;
     }
+    
+    public function getArrayIds()
+    {
+        return array('id' => $this->id);
+    }
 }
