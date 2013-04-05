@@ -163,9 +163,15 @@ class Choix
     }
     
     public function __toString() {
-        if ($this->intro == NULL) {
-            return " ";
+        $string = $this->id;
+        if ($this->intro != NULL) {
+            return $string." - ".$this->intro;
         }
-        return $this->intro->getContenu();
+        return $string;
+    }
+    
+    public function getArrayIds()
+    {
+        return array('id' => $this->id);
     }
 }

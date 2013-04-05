@@ -1,19 +1,30 @@
-liste_choix:
-    pattern: /index
+choix:
+    pattern:  /
     defaults: { _controller: "HistoireBundle:Choix:index" }
-    
-new_choix:
-    pattern: /new
-    defaults: { _controller: "HistoireBundle:Choix:new" }
-
-edit_choix:
-    pattern: /edit
-    defaults: { _controller: "HistoireBundle:Choix:edit" }
-    
-delete_choix:
-    pattern: /delete
-    defaults: { _controller: "HistoireBundle:Choix:delete" }
 
 choix_show:
     pattern:  /{id}/show
     defaults: { _controller: "HistoireBundle:Choix:show" }
+
+choix_new:
+    pattern:  /new
+    defaults: { _controller: "HistoireBundle:Choix:new" }
+
+choix_create:
+    pattern:  /create
+    defaults: { _controller: "HistoireBundle:Choix:create" }
+    requirements: { _method: post }
+
+choix_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "HistoireBundle:Choix:edit" }
+
+choix_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "HistoireBundle:Choix:update" }
+    requirements: { _method: post }
+
+choix_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "HistoireBundle:Choix:delete" }
+    requirements: { _method: post }
