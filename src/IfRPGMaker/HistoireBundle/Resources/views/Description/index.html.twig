@@ -1,37 +1,49 @@
-<h1>Description list</h1>
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block titre %} Description list {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>
+         <ul>
+            <li>
+                <a href="{{ path('description_new') }}">
+                    Create a new entry
+                </a>
+            </li>
+        </ul>
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Contenu</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('description_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.contenu }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('description_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('description_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
-<ul>
-    <li>
-        <a href="{{ path('description_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Contenu</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('description_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.contenu | slice(0, 30) }}
+                        {%if entity.contenu | length > 30 %}
+                        ...
+                        {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('description_show', { 'id': entity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('description_edit', { 'id': entity.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3">Aucune description trouv&eacute;e</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>   
+    </section>
+{% endblock %}

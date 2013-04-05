@@ -3,6 +3,7 @@
 namespace IfRPGMaker\HistoireBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\DBAL\DriverManager;
 
 /**
  * ChoixRepository
@@ -12,5 +13,114 @@ use Doctrine\ORM\EntityRepository;
  */
 class ChoixRepository extends EntityRepository
 {
+    public function getConnection()
+    {
+        return $this->_em->getConnection();
+    }
     
+    public function myfind($id)
+    {
+        $sql = "SELECT * FROM Choix WHERE id = ".$id;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.id = :id")
+                ->setParameter("id", $id)
+                ->getQuery();
+                
+       $res = $query->getResult();
+        if (empty($res))
+            $res = NULL;
+        else
+            $res = $res[0];
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function myfindByIntro($intro)
+    {
+        $sql = "SELECT * FROM Choix WHERE intro=" .$intro;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.intro = :intro")
+                ->setParameter("intro", $intro)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function myfindByDescription($description)
+    {
+        $sql = "SELECT * FROM Choix WHERE description=" .$description;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.description = :description")
+                ->setParameter("description", $description)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function myfindByParent($parent)
+    {
+        $sql = "SELECT * FROM Choix WHERE parent=" .$parent;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.parent = :parent")
+                ->setParameter("intro", $parent)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function myfindAll()
+    {
+        $sql = "SELECT * FROM Choix";
+        
+        $query = $this->createQueryBuilder("c")->getQuery();
+        $res = $query->getResult();
+        
+        return array("sql" => $sql, "entities" => $res);
+    }
+    
+    public function insert($entity) {
+        $sql = "INSERT INTO Choix (intro,description,parent) VALUES (".
+                $entity->getIntro()->getId().","
+                .$entity->getDescription()->getId().","
+                .$entity->getParent()->getId().")";
+        $conn = $this->getConnection();
+        
+        $conn->insert('Choix', array('intro' => $entity->getIntro()->getId(),
+            'description' => $entity->getDescription()->getId(),
+            'parent' => $entity->getParent()->getId())
+                );
+        
+        return array('sql' => $sql, 'id' => $conn->lastInsertId());
+    }
+    
+    public function delete($entity) {
+        $sql = "DELETE FROM Choix WHERE id=".$entity->getId();
+        
+        $conn = $this->getConnection();
+        $conn->delete('Choix', array('id' => $entity->getId()));
+        
+        return $sql;
+    }
+    
+    public function update($entity) {
+        $sql = "UPDATE Choix SET intro=" .$entity->getIntro()->getId().
+                ", description=".$entity->getDescription()->getId().
+                ", parent=".$entity->getParent()->getId().")";
+        
+        $conn = $this->getConnection();
+        $conn->update('Choix', 
+                array('intro' => $entity->getIntro()->getId(), 
+                    'description' => $entity->getDescription()->getId(), 
+                    'parent' => $entity->getParent()->getId()),
+                array('id' => $entity->getId())
+                );
+        
+        return $sql;
+    }
 }

@@ -6,14 +6,30 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Doctrine\ORM\EntityRepository;
+
 class ChoixType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("intro")
-            ->add("description")
-            ->add("parent")
+            ->add("intro", 'entity', array(
+                'class' => 'HistoireBundle:Intro',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('c');
+                    },
+            ))
+            ->add("description", 'entity', array(
+                'class' => 'HistoireBundle:Description',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('c');
+                    },
+            ))
+            ->add("parent", 'entity', array(
+                'class' => 'HistoireBundle:Choix',
+                'property' => 'id',
+                'required' => false,
+            ))
         ;
     }
 
