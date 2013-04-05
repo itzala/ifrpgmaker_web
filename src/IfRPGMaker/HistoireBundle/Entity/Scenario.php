@@ -110,4 +110,13 @@ class Scenario
     {
         return $this->titre_histoire;
     }
+    
+    public function __toString() {
+        return $this->debut->__toString();
+    }
+    
+    public function getArrayIds()
+    {
+        return array('auteur' => $this->auteur, 'titre_histoire' => $this->titre_histoire, 'debut' => $this->debut);
+    }
 }

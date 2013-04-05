@@ -20,7 +20,7 @@ class IntroRepository extends EntityRepository
     
     public function find($id)
     {
-        $sql = "SELECT * FROM Intro WHERE id = ".$id;
+        $sql = "SELECT * FROM Intro WHERE id=".$id;
         
         $query = $this->createQueryBuilder("i")
                 ->where("i.id = :id")
@@ -37,7 +37,7 @@ class IntroRepository extends EntityRepository
     
     public function findByContenu($contenu)
     {
-        $sql = "SELECT * FROM Intro WHERE contenu = " .$contenu;
+        $sql = "SELECT * FROM Intro WHERE contenu=" .$contenu;
         
         $query = $this->createQueryBuilder("i")
                 ->where("i.contenu = :contenu")
@@ -45,7 +45,7 @@ class IntroRepository extends EntityRepository
                 ->getQuery();
         
         $res = $query->getResult();
-        return array("sql" => $sql, "entity"=> $res);
+        return array("sql" => $sql, "entities"=> $res);
     }
     
     public function findAll()
@@ -77,7 +77,7 @@ class IntroRepository extends EntityRepository
     }
     
     public function update($entity) {
-        $sql = "UPDATE Intro SET contenu='".$entity->getContenu()."' WHERE id =".$entity->getId();
+        $sql = "UPDATE Intro SET contenu='".$entity->getContenu()."' WHERE id=".$entity->getId();
         
         $conn = $this->getConnection();
         $conn->update('Intro', 

@@ -168,4 +168,13 @@ class Histoire
     
         return $this;
     }
+    
+    public function __toString() {
+        return $this->titre;
+    }
+    
+    public function getArrayIds()
+    {
+        return array('auteur' => $this->auteur, 'titre' => $this->titre);
+    }
 }
