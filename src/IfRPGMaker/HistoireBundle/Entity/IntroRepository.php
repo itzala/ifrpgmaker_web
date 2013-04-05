@@ -77,9 +77,13 @@ class IntroRepository extends EntityRepository
     }
     
     public function update($entity) {
-        $sql = "UPDATE Intro SET contenu='".$entity->getContenu."' WHERE id =".$entity->getId();
+        $sql = "UPDATE Intro SET contenu='".$entity->getContenu()."' WHERE id =".$entity->getId();
         
         $conn = $this->getConnection();
+        $conn->update('Intro', 
+                array('contenu' => $entity->getContenu()), 
+                array('id' => $entity->getId())
+                );
         
         return $sql;
     }

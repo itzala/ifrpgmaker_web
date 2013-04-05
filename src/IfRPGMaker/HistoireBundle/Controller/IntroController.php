@@ -92,7 +92,7 @@ class IntroController extends Controller
             $rep = $this->getRepository();
             $sql = $rep->insert($entity);
             
-            $message = 'La requête exécutée est la suivante :\n'.$sql;
+            $message = 'La requête exécutée est la suivante : '.$sql;
             $this->setFlash("sql", $message);
 
             $message = var_dump($entity->getArrayIds());
