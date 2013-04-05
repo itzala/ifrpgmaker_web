@@ -90,16 +90,15 @@ class IntroController extends Controller
 
         if ($form->isValid()) {
             $rep = $this->getRepository();
-            $sql = $rep->insert($entity);
+            $res = $rep->insert($entity);
+            $sql = $res['sql'];
             
             $message = 'La requête exécutée est la suivante : <br/>'.$sql;
             $this->setFlash("sql", $message);
 
-            $message = var_dump($entity->getArrayIds());
-            //$this->setFlash("array-ids", $message);
-            echo $message;
-            return $this->redirect($this->generateUrl('intro'));
-            //return $this->redirect($this->generateUrl('intro_show', $entity->getArrayIds()));
+            
+            
+            return $this->redirect($this->generateUrl('intro_show', array('id' => $res['id'])));
         }
 
         return $this->render('HistoireBundle:Intro:new.html.twig', array(

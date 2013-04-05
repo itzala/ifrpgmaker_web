@@ -64,7 +64,7 @@ class IntroRepository extends EntityRepository
         
         $conn->insert('Intro', array('contenu' => $entity->getContenu()));
         
-        return $sql;
+        return array('sql' => $sql, 'id' => $conn->lastInsertId());
     }
     
     public function delete($entity) {
