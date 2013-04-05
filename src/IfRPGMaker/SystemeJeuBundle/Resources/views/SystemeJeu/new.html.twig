@@ -1,10 +1,10 @@
 {% extends "::base.html.twig" %}
 {% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Personnage creation {% endblock %}
+{% block titre %} Syst&egrave;me de jeu creation {% endblock %}
 {% block body %}
 {{ parent() }}
     <section>
-        <form action="{{ path('intro_create') }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ path('systeme_jeu_create') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
             <p>
                 <button type="submit">Create</button>
@@ -13,7 +13,7 @@
 
         <ul class="record_actions">
             <li>
-                <a href="{{ path('intro') }}">
+                <a href="{{ path('systeme_jeu') }}">
                     Back to the list
                 </a>
             </li>

@@ -1,0 +1,106 @@
+<?php
+
+namespace IfRPGMaker\PersonnageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Personnage
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="IfRPGMaker\PersonnageBundle\Entity\PersonnageRepository")
+ */
+class Personnage
+{
+    /**
+     * @var string
+     * @ORM\Id
+     * @ORM\Column(name="nom", type="string", length=40)
+     */
+    private $nom;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="taille", type="int")
+     */
+    private $taille;
+        
+    
+    /**
+     * 
+     * @ORM\Column(name="metier", type="string", length=40)
+     */
+    
+    private $metier;
+    
+    /**
+     * 
+     * @ORM\Column(name="classe", type="string", length=40)
+     */
+    
+    private $classe;
+    
+    
+    /**
+     * 
+     * @ORM\Column(name="race", type="string", length=40)
+     */
+    
+    private $race;
+    
+    
+    /**
+     * 
+     * @ORM\Column(name="pseudo", type="string", length=40)
+     */
+    
+    private $pseudo;
+    
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Personnage
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set taille
+     *
+     * @param int $taille
+     * @return Personnage
+     */
+    public function setTaille($taille)
+    {
+        $this->taille = $taille;
+    
+        return $this;
+    }
+
+    /**
+     * Get taille
+     *
+     * @return int 
+     */
+    public function getTaille()
+    {
+        return $this->taille;
+    }
+}

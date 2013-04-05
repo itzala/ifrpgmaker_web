@@ -1,25 +1,84 @@
 <?php
+
 namespace IfRPGMaker\UserBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="ifrpg_joueur")
+ * Joueur
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="IfRPGMaker\UserBundle\Entity\JoueurRepository")
  */
-class Joueur extends BaseUser
+class Joueur
 {
     /**
+     *
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="pseudo", type="string", length=40)
      */
-    protected $id;
-
-    public function __construct()
+    
+    private $pseudo;
+    
+    /**
+     *
+     * @var string
+     * @ORM\Column(name="mdp", type="string", length=40)
+     * 
+     */
+    
+    private $mdp;
+    
+    
+    public function __construct($pseudo, $mdp)
     {
-        parent::__construct();
-        // your own logic
+        $this->mdp = $mdp;
+        $this->pseudo = $pseudo;
+    }
+
+    /**
+     * Set pseudo
+     *
+     * @param string $pseudo
+     * @return Joueur
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+    
+        return $this;
+    }
+
+    /**
+     * Get pseudo
+     *
+     * @return string 
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set mdp
+     *
+     * @param string $mdp
+     * @return Joueur
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+    
+        return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string 
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
     }
 }

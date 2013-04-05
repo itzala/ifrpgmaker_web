@@ -1,10 +1,10 @@
 {% extends "::base.html.twig" %}
 {% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Personnage {% endblock %}
+{% block titre %} Syst&egrave;me de jeu {% endblock %}
 {% block body %}
 {{ parent() }}
     <section>
-        <h1>Personnage</h1>
+        <h1>Syst&egrave;me de jeu</h1>
 
         <table class="record_properties">
             <tbody>
@@ -14,24 +14,24 @@
                 </tr>
                 <tr>
                     <th>Contenu</th>
-                    <td>{{ entity.contenu }}</td>
+                    <td>{{ entity.createur }}</td>
                 </tr>
             </tbody>
         </table>
 
         <ul class="record_actions">
             <li>
-                <a href="{{ path('intro') }}">
+                <a href="{{ path('systeme_jeu') }}">
                     Back to the list
                 </a>
             </li>
             <li>
-                <a href="{{ path('intro_edit', { 'id': entity.id }) }}">
+                <a href="{{ path('systeme_jeu_edit', { 'id': entity.id }) }}">
                     Edit
                 </a>
             </li>
             <li>
-                <form action="{{ path('intro_delete', { 'id': entity.id }) }}" method="post">
+                <form action="{{ path('systeme_jeu_delete', { 'id': entity.id }) }}" method="post">
                     {{ form_widget(delete_form) }}
                     <button type="submit">Delete</button>
                 </form>

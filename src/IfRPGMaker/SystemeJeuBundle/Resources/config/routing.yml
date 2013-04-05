@@ -1,3 +1,3 @@
-systeme_jeu_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SystemeJeuBundle:Default:index }
+systeme_jeu_bundle_systeme_jeu:
+    resource: "@SystemeJeuBundle/Resources/config/routing/systeme_jeu.yml"
+    prefix:   /systeme_jeu
