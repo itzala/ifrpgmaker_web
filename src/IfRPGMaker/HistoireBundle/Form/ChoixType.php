@@ -25,11 +25,7 @@ class ChoixType extends AbstractType
                     return $er->createQueryBuilder('c');
                     },
             ))
-            ->add("parent", 'entity', array(
-                'class' => 'HistoireBundle:Choix',
-                'property' => 'id',
-                'required' => false,
-            ))
+            ->add("parent")
         ;
     }
 

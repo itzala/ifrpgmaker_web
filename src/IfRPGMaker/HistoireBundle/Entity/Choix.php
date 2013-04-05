@@ -71,35 +71,12 @@ class Choix
     }
 
     /**
-     * Set evenement
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Evenement $evenement
-     * @return Choix
-     */
-    public function setEvenement(\IfRPGMaker\HistoireBundle\Entity\Evenement $evenement)
-    {
-        $this->evenement = $evenement;
-    
-        return $this;
-    }
-
-    /**
-     * Get evenement
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Evenement 
-     */
-    public function getEvenement()
-    {
-        return $this->evenement;
-    }
-
-    /**
      * Set parent
      *
      * @param \IfRPGMaker\HistoireBundle\Entity\Choix $parent
      * @return Choix
      */
-    public function setParent(\IfRPGMaker\HistoireBundle\Entity\Choix $parent)
+    public function setParent($parent)
     {
         $this->parent = $parent;
     

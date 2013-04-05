@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ifrpg_joueur")
  */
-class Joueur extends BaseUser
+class User extends BaseUser
 {
     /**
      * @ORM\Id

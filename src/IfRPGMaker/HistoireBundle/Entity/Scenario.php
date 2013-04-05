@@ -15,7 +15,7 @@ class Scenario
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="pseudo")
      * 
      */
     private $auteur;

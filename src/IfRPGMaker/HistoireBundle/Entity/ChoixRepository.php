@@ -37,11 +37,11 @@ class ChoixRepository extends EntityRepository
     
     public function myfindByIntro($intro)
     {
-        $sql = "SELECT * FROM Choix WHERE intro=" .$intro;
+        $sql = "SELECT * FROM Choix WHERE intro_id=" .$intro->getId();
         
         $query = $this->createQueryBuilder("c")
-                ->where("c.intro = :intro")
-                ->setParameter("intro", $intro)
+                ->where("c.intro_id = :intro_id")
+                ->setParameter("intro_id", $intro->getId())
                 ->getQuery();
         
         $res = $query->getResult();
@@ -50,11 +50,11 @@ class ChoixRepository extends EntityRepository
     
     public function myfindByDescription($description)
     {
-        $sql = "SELECT * FROM Choix WHERE description=" .$description;
+        $sql = "SELECT * FROM Choix WHERE description_id=" .$description->getId();
         
         $query = $this->createQueryBuilder("c")
-                ->where("c.description = :description")
-                ->setParameter("description", $description)
+                ->where("c.description_id = :description_id")
+                ->setParameter("description_id", $description_id)
                 ->getQuery();
         
         $res = $query->getResult();
@@ -63,11 +63,11 @@ class ChoixRepository extends EntityRepository
     
     public function myfindByParent($parent)
     {
-        $sql = "SELECT * FROM Choix WHERE parent=" .$parent;
+        $sql = "SELECT * FROM Choix WHERE parent_id=" .$parent->getId();
         
         $query = $this->createQueryBuilder("c")
-                ->where("c.parent = :parent")
-                ->setParameter("intro", $parent)
+                ->where("c.parent_id = :parent_id")
+                ->setParameter("parent_id", $parent->getId())
                 ->getQuery();
         
         $res = $query->getResult();
@@ -85,15 +85,19 @@ class ChoixRepository extends EntityRepository
     }
     
     public function insert($entity) {
-        $sql = "INSERT INTO Choix (intro,description,parent) VALUES (".
+        $parent = null;
+        if($entity->getParent() != null){
+            $parent = $entity->getParent()->getId();
+        }
+        $sql = "INSERT INTO Choix (intro_id,description_id,parent_id) VALUES (".
                 $entity->getIntro()->getId().","
                 .$entity->getDescription()->getId().","
-                .$entity->getParent()->getId().")";
+                .($parent == null ? "null" : $parent).")";
         $conn = $this->getConnection();
         
-        $conn->insert('Choix', array('intro' => $entity->getIntro()->getId(),
-            'description' => $entity->getDescription()->getId(),
-            'parent' => $entity->getParent()->getId())
+        $conn->insert('Choix', array('intro_id' => $entity->getIntro()->getId(),
+            'description_id' => $entity->getDescription()->getId(),
+            'parent_id' => $parent)
                 );
         
         return array('sql' => $sql, 'id' => $conn->lastInsertId());
@@ -109,15 +113,19 @@ class ChoixRepository extends EntityRepository
     }
     
     public function update($entity) {
-        $sql = "UPDATE Choix SET intro=" .$entity->getIntro()->getId().
-                ", description=".$entity->getDescription()->getId().
-                ", parent=".$entity->getParent()->getId().")";
+        $parent = null;
+        if($entity->getParent() != null){
+            $parent = $entity->getParent()->getId();
+        }
+        $sql = "UPDATE Choix SET intro_id=" .$entity->getIntro()->getId().
+                ", description_id=".$entity->getDescription()->getId().
+                (", parent_id=".($parent == null ? "null" : $parent).")");
         
         $conn = $this->getConnection();
         $conn->update('Choix', 
-                array('intro' => $entity->getIntro()->getId(), 
-                    'description' => $entity->getDescription()->getId(), 
-                    'parent' => $entity->getParent()->getId()),
+                array('intro_id' => $entity->getIntro()->getId(), 
+                    'description_id' => $entity->getDescription()->getId(), 
+                    'parent_id' => $parent),
                 array('id' => $entity->getId())
                 );
         
