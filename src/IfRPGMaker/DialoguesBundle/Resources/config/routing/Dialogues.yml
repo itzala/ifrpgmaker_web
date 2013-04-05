@@ -1,0 +1,30 @@
+dialogues:
+    pattern:  /
+    defaults: { _controller: "DialoguesBundle:dialogues:index" }
+
+dialogues_show:
+    pattern:  /{$auteur, $perso, $description}/show
+    defaults: { _controller: "DialoguesBundle:dialogues:show" }
+
+dialogues_new:
+    pattern:  /new
+    defaults: { _controller: "DialoguesBundle:dialogues:new" }
+
+dialogues_create:
+    pattern:  /create
+    defaults: { _controller: "DialoguesBundle:dialogues:create" }
+    requirements: { _method: post }
+
+dialogues_edit:
+    pattern:  /{$auteur, $perso, $description}/edit
+    defaults: { _controller: "DialoguesBundle:dialogues:edit" }
+
+dialogues_update:
+    pattern:  /{$auteur, $perso, $description}/update
+    defaults: { _controller: "DialoguesBundle:dialogues:update" }
+    requirements: { _method: post }
+
+dialogues_delete:
+    pattern:  /{$auteur, $perso, $description}/delete
+    defaults: { _controller: "DialoguesBundle:dialogues:delete" }
+    requirements: { _method: post }
