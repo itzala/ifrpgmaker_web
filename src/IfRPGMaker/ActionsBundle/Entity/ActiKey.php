@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ActiKey
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="IfRPGMaker\ActionsBundle\Entity\ActionRepository")
+ * @ORM\Entity(repositoryClass="IfRPGMaker\ActionsBundle\Entity\ActiKeyRepository")
  */
 class ActiKey
 {
@@ -51,7 +51,7 @@ class ActiKey
     /**
      * Get action
      *
-     * @return \IfRPGMaker\ActionsBundle\Entity\Actions $action
+     * @return \IfRPGMaker\ActionsBundle\Entity\Actions
      */
     public function getAction()
     {
@@ -75,7 +75,7 @@ class ActiKey
     /**
      * Get keyword
      *
-     * @return IfRPGMaker\ActionsBundle\Entity\Keywords $keyword
+     * @return IfRPGMaker\ActionsBundle\Entity\Keywords
      *
      */
     public function getkeyword()
@@ -84,7 +84,7 @@ class ActiKey
     }
 
     public function __toString() {
-        return '('+$this->action+'; '+this->keyword+')';
+        return '('.$this->action.'; '.this->keyword.')';
     }
     
     public function getArrayIds()
