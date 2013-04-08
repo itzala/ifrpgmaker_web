@@ -1,3 +1,31 @@
 systeme_jeu_bundle_systeme_jeu:
     resource: "@SystemeJeuBundle/Resources/config/routing/systeme_jeu.yml"
     prefix:   /systeme_jeu
+    
+systeme_jeu_bundle_caract:
+    resource: "@SystemeJeuBundle/Resources/config/routing/caract.yml"
+    prefix:   /caract
+    
+systeme_jeu_bundle_metier:
+    resource: "@SystemeJeuBundle/Resources/config/routing/metier.yml"
+    prefix:   /metier
+    
+systeme_jeu_bundle_race:
+    resource: "@SystemeJeuBundle/Resources/config/routing/race.yml"
+    prefix:   /race
+    
+systeme_jeu_bundle_type_objet:
+    resource: "@SystemeJeuBundle/Resources/config/routing/type_objet.yml"
+    prefix:   /type_objet
+    
+systeme_jeu_bundle_classe:
+    resource: "@SystemeJeuBundle/Resources/config/routing/classe.yml"
+    prefix:   /classe
+    
+systeme_jeu_bundle_objet:
+    resource: "@SystemeJeuBundle/Resources/config/routing/objet.yml"
+    prefix:   /objet
+    
+systeme_jeu_bundle_parties_corps:
+    resource: "@SystemeJeuBundle/Resources/config/routing/parties_corps.yml"
+    prefix:   /parties_corps

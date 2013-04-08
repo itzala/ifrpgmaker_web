@@ -22,18 +22,18 @@
         <ul class="record_actions">
             <li>
                 <a href="{{ path('description') }}">
-                    Back to the list
+                    Retour
                 </a>
             </li>
             <li>
                 <a href="{{ path('description_edit', { 'id': entity.id }) }}">
-                    Edit
+                    Editer
                 </a>
             </li>
             <li>
                 <form action="{{ path('description_delete', { 'id': entity.id }) }}" method="post">
                     {{ form_widget(delete_form) }}
-                    <button type="submit">Delete</button>
+                    <button type="submit">Supprimer</button>
                 </form>
             </li>
         </ul>

@@ -1,0 +1,30 @@
+race:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:Race:index" }
+
+race_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:Race:show" }
+
+race_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:Race:new" }
+
+race_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:Race:create" }
+    requirements: { _method: post }
+
+race_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:Race:edit" }
+
+race_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:Race:update" }
+    requirements: { _method: post }
+
+race_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:Race:delete" }
+    requirements: { _method: post }

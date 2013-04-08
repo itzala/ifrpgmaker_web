@@ -4,10 +4,16 @@
 {% block body %}
 {{ parent() }}
     <section>
+        <p>
+            Vous devrez également créer des <a href="{{ path("caract") }}">caractéristiques</a>, des <a href="{{ path("systeme_jeu") }}">équipements</a>,
+            des <a href="{{ path("race") }}">races</a>.
+        </p>
+    </section>
+    <section>
          <ul>
             <li>
                 <a href="{{ path('systeme_jeu_new') }}">
-                    Create a new entry
+                    Ajouter
                 </a>
             </li>
         </ul>
@@ -32,10 +38,10 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('systeme_jeu_show', { 'id': entity.id }) }}">show</a>
+                                <a href="{{ path('systeme_jeu_show', { 'id': entity.id }) }}">Détails</a>
                             </li>
                             <li>
-                                <a href="{{ path('systeme_jeu_edit', { 'id': entity.id }) }}">edit</a>
+                                <a href="{{ path('systeme_jeu_edit', { 'id': entity.id }) }}">Editer</a>
                             </li>
                         </ul>
                     </td>

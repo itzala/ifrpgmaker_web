@@ -1,0 +1,30 @@
+metier:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:Metier:index" }
+
+metier_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:Metier:show" }
+
+metier_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:Metier:new" }
+
+metier_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:Metier:create" }
+    requirements: { _method: post }
+
+metier_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:Metier:edit" }
+
+metier_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:Metier:update" }
+    requirements: { _method: post }
+
+metier_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:Metier:delete" }
+    requirements: { _method: post }

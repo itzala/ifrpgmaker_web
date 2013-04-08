@@ -1,0 +1,30 @@
+type_objet:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:index" }
+
+type_objet_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:show" }
+
+type_objet_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:new" }
+
+type_objet_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:create" }
+    requirements: { _method: post }
+
+type_objet_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:edit" }
+
+type_objet_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:update" }
+    requirements: { _method: post }
+
+type_objet_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:TypeObjet:delete" }
+    requirements: { _method: post }

@@ -30,7 +30,7 @@ class Joueur
     private $mdp;
     
     
-    public function __construct($pseudo, $mdp)
+    public function __construct($pseudo = "Anonyme", $mdp = "Anonymous")
     {
         $this->mdp = $mdp;
         $this->pseudo = $pseudo;
@@ -80,5 +80,15 @@ class Joueur
     public function getMdp()
     {
         return $this->mdp;
+    }
+    
+    public function __toString() 
+    {
+        return $this->pseudo;
+    }
+    
+    public function getArrayIds()
+    {
+        return array("pseudo" => $this->pseudo);
     }
 }

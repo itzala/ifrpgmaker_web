@@ -26,8 +26,8 @@ class AppKernel extends Kernel
             new IfRPGMaker\SiteBundle\SiteBundle(),
             
             new IfRPGMaker\ContraintesBundle\ContraintesBundle(),
-            new IfRPGMaker\ActionsBundle\ActionsBundle(),
-            new IfRPGMaker\DialoguesBundle\DialoguesBundle(),
+//            new IfRPGMaker\ActionsBundle\ActionsBundle(),
+//            new IfRPGMaker\DialoguesBundle\DialoguesBundle(),
             
             new IfRPGMaker\PersonnageBundle\PersonnageBundle(),
             new IfRPGMaker\SystemeJeuBundle\SystemeJeuBundle(),
