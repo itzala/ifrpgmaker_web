@@ -13,31 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Caracteristique
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
+     * @ORM\Id
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
-
-
+    
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id", name="id_systeme_jeu")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id_systeme_jeu;
 
     /**
      * Set nom
@@ -60,5 +46,28 @@ class Caracteristique
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set id_systeme_jeu
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $idSystemeJeu
+     * @return Caracteristique
+     */
+    public function setIdSystemeJeu(\IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $idSystemeJeu)
+    {
+        $this->id_systeme_jeu = $idSystemeJeu;
+    
+        return $this;
+    }
+
+    /**
+     * Get id_systeme_jeu
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu 
+     */
+    public function getIdSystemeJeu()
+    {
+        return $this->id_systeme_jeu;
     }
 }

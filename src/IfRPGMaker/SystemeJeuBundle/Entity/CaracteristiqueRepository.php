@@ -3,6 +3,7 @@
 namespace IfRPGMaker\SystemeJeuBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\DBAL\DriverManager;
 
 /**
  * CaracteristiqueRepository
@@ -12,4 +13,78 @@ use Doctrine\ORM\EntityRepository;
  */
 class CaracteristiqueRepository extends EntityRepository
 {
+    public function getConnection()
+    {
+        return $this->_em->getConnection();
+    }
+    
+    public function find($id)
+    {
+        $sql = "SELECT * FROM Caracteristique WHERE nom=".$id;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.nom = :nom")
+                ->setParameter("nom", $id)
+                ->getQuery();
+                
+       $res = $query->getResult();
+        if (empty($res))
+            $res = NULL;
+        else
+            $res = $res[0];
+        return array("sql" => $sql, "entity"=> $res);
+    }
+    
+    public function findByIdSystemeJeu($id)
+    {
+        $sql = "SELECT * FROM Caracteristique WHERE id_systeme_jeu=" .$id;
+        
+        $query = $this->createQueryBuilder("c")
+                ->where("c.id_systeme_jeu = :id_systeme")
+                ->setParameter("id_systeme", $id)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    
+    public function findAll()
+    {
+        $sql = "SELECT * FROM Caracteristique";
+        
+        $query = $this->createQueryBuilder("c")->getQuery();
+        $res = $query->getResult();
+        
+        return array("sql" => $sql, "entities" => $res);
+    }
+    
+    public function insert($entity) {
+        $sql = "INSERT INTO Caracteristique (nom, id_systeme_jeu) VALUES ('".$entity->getNom()."', ".$entity->getIdSystemeJeu()->getId().")";        
+        
+        $conn = $this->getConnection();
+        $conn->insert('Caracteristique', array('nom' => $entity->getNom(), "id_systeme_jeu" => $entity->getIdSystemeJeu()));
+        
+        return array('sql' => $sql, 'id' => $entity->getNom());
+    }
+    
+    public function delete($entity) {
+        $sql = "DELETE FROM Caracteristique WHERE nom=".$entity->getNom();
+        
+        $conn = $this->getConnection();
+        $conn->delete('Caracteristique', array('nom' => $entity->getNom()));
+        
+        return $sql;
+    }
+    
+    public function update($entity) {
+        $sql = "UPDATE Caracteristique SET id_systeme_jeu='".$entity->getIdSystemeJeu()->getId()."' WHERE nom=".$entity->getNom();
+        
+        $conn = $this->getConnection();        
+        $conn->update('Caracteristique', 
+                array('id_systeme_jeu' => $entity->getIdSystemeJeu()->getId()), 
+                array('nom' => $entity->getNom())
+                );
+        
+        return $sql;
+    }
 }

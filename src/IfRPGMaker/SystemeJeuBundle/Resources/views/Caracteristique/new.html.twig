@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}| Caractéristique {% endblock %}
+{% block titre %} Caractéristique {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>
+        <form action="{{ path('caract_create') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <p>
+                <button type="submit">Créer</button>
+            </p>
+        </form>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('caract') }}">
+                    Retour
+                </a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}
