@@ -1,0 +1,30 @@
+caract:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:index" }
+
+caract_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:show" }
+
+caract_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:new" }
+
+caract_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:create" }
+    requirements: { _method: post }
+
+caract_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:edit" }
+
+caract_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:update" }
+    requirements: { _method: post }
+
+caract_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:Caracteristique:delete" }
+    requirements: { _method: post }

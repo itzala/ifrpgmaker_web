@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }} | Caractéristique{% endblock %}
+{% block titre %} Caractéristique Editer {% endblock %}
+{% block body %}
+    {{ parent() }}
+    <section>
+
+    <form action="{{ path('caract_update', { 'id': entity.nom }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit">Editer</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('caract') }}">
+                Retour
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('caract_delete', { 'id': entity.nom }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit">Supprimer</button>
+            </form>
+        </li>
+    </ul>
+    </section>
+{% endblock %}

@@ -4,8 +4,6 @@
 {% block body %}
 {{ parent() }}
     <section>
-        <h1>Syst&egrave;me de jeu</h1>
-
         <table class="record_properties">
             <tbody>
                 <tr>
@@ -22,18 +20,18 @@
         <ul class="record_actions">
             <li>
                 <a href="{{ path('systeme_jeu') }}">
-                    Back to the list
+                    Retour
                 </a>
             </li>
             <li>
                 <a href="{{ path('systeme_jeu_edit', { 'id': entity.id }) }}">
-                    Edit
+                    Editer
                 </a>
             </li>
             <li>
                 <form action="{{ path('systeme_jeu_delete', { 'id': entity.id }) }}" method="post">
                     {{ form_widget(delete_form) }}
-                    <button type="submit">Delete</button>
+                    <button type="submit">Supprimer</button>
                 </form>
             </li>
         </ul>

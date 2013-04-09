@@ -1,0 +1,30 @@
+classe:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:Classe:index" }
+
+classe_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:Classe:show" }
+
+classe_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:Classe:new" }
+
+classe_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:Classe:create" }
+    requirements: { _method: post }
+
+classe_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:Classe:edit" }
+
+classe_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:Classe:update" }
+    requirements: { _method: post }
+
+classe_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:Classe:delete" }
+    requirements: { _method: post }

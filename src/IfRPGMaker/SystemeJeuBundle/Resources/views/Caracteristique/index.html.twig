@@ -1,0 +1,46 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }} | Caractéristique{% endblock %}
+{% block titre %} Caractéristique list {% endblock %}
+{% block body %}
+{{ parent() }}   
+    <section>
+         <ul>
+            <li>
+                <a href="{{ path('caract_new') }}">
+                    Ajouter
+                </a>
+            </li>
+        </ul>
+
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Id du système de jeu</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('caract_show', { 'id': entity.nom }) }}">{{ entity.nom }}</a></td>
+                    <td>{{entity.id_systeme_jeu}}
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('caract_show', { 'id': entity.nom }) }}">Détails</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('caract_edit', { 'id': entity.nom }) }}">Editer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3">Aucune caractéristique trouv&eacute;e</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>   
+    </section>
+{% endblock %}

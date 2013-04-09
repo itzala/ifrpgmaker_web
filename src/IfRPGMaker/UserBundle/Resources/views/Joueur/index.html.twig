@@ -1,1 +1,43 @@
-{% extends ::base.html.twig%}
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block titre %} Joueur list {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>
+         <ul>
+            <li>
+                <a href="{{ path('joueur_new') }}">
+                    Ajouter
+                </a>
+            </li>
+        </ul>
+
+        <table class="records_list">
+            <thead>
+                <tr>                    
+                    <th>Pseudo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('joueur_show', { 'id': entity.pseudo }) }}">{{ entity.pseudo }}</a></td>                    
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('joueur_show', { 'id': entity.pseudo }) }}">Détails</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('joueur_edit', { 'id': entity.pseudo }) }}">Editer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3">Aucun joueur trouv&eacute;</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>   
+    </section>
+{% endblock %}

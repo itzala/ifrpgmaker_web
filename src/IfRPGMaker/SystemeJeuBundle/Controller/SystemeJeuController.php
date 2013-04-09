@@ -27,7 +27,7 @@ class SystemeJeuController extends Controller
                 $message
                 );
     }
-    
+     
     /**
      * Lists all SystemeJeu entities.
      *
@@ -95,10 +95,8 @@ class SystemeJeuController extends Controller
             
             $message = 'La requête exécutée est la suivante : <br/>'.$sql;
             $this->setFlash("sql", $message);
-
-            
-            
-            return $this->redirect($this->generateUrl('intro_show', array('id' => $res['id'])));
+           
+            return $this->redirect($this->generateUrl('systeme_jeu_show', array('id' => $res['id'])));
         }
 
         return $this->render('SystemeJeuBundle:SystemeJeu:new.html.twig', array(
@@ -154,7 +152,7 @@ class SystemeJeuController extends Controller
             
             $this->setFlash("sql", $sql);
 
-            return $this->redirect($this->generateUrl('intro_edit', $entity->getArrayIds()));
+            return $this->redirect($this->generateUrl('systeme_jeu_edit', $entity->getArrayIds()));
         }
 
         return $this->render('SystemeJeuBundle:SystemeJeu:edit.html.twig', array(
@@ -188,7 +186,7 @@ class SystemeJeuController extends Controller
              $this->setFlash("sql", $sql);
         }
 
-        return $this->redirect($this->generateUrl('intro'));
+        return $this->redirect($this->generateUrl('systeme_jeu'));
     }
 
     private function createDeleteForm($id)

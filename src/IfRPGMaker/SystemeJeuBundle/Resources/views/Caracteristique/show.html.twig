@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }} | Caractéristique {% endblock %}
+{% block titre %} Caractéristique {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>        
+        <table class="record_properties">
+            <tbody>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ entity.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Id Sytème de jeu </th>
+                    <td>{{ entity.id_systeme_jeu }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('caract') }}">
+                    Retour
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('caract_edit', { 'id': entity.nom }) }}">
+                    Editer
+                </a>
+            </li>
+            <li>
+                <form action="{{ path('caract_delete', { 'id': entity.nom }) }}" method="post">
+                    {{ form_widget(delete_form) }}
+                    <button type="submit">Supprimer</button>
+                </form>
+            </li>
+        </ul>
+</section>
+{% endblock %}

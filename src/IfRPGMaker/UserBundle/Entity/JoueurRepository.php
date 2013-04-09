@@ -51,7 +51,7 @@ class JoueurRepository extends EntityRepository
         
         $conn->insert('Joueur', array('pseudo' => $entity->getPseudo(), "mdp" => $entity->getMdp()));
         
-        return array('sql' => $sql, 'id' => $conn->lastInsertId());
+        return array('sql' => $sql, 'pseudo' => $entity->getPseudo());
     }
 
     public function update($entity) {
@@ -62,6 +62,15 @@ class JoueurRepository extends EntityRepository
                 array('pseudo' => $entity->getPseudo()), 
                 array('mdp' => $entity->getMdp())
                 );
+        
+        return $sql;
+    }
+    
+    public function delete($entity) {
+        $sql = "DELETE FROM Joueur WHERE id=".$entity->getPseudo();
+        
+        $conn = $this->getConnection();
+        $conn->delete('Joueur', array('pseudo' => $entity->getPseudo()));
         
         return $sql;
     }

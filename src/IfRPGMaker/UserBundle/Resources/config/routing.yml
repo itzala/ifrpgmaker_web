@@ -1,7 +1,8 @@
 fos_user_bundle:
-    resource: "@UserBundle/Resources/config/routing_fos.yml"
+    resource: "@UserBundle/Resources/config/routing/routing_fos.yml"
     prefix:   /
-    
-joueurs_index:
-    pattern: /joueurs/liste
-    defaults: { _controller: "UserBundle:Joueur:index" }
+
+user_bundle_joueur:
+    resource: "@UserBundle/Resources/config/routing/joueur.yml"
+    prefix:   /joueur
+ 

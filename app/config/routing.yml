@@ -1,9 +1,9 @@
-dialogues:
-    resource: "@DialoguesBundle/Resources/config/routing.yml"
-    prefix:   /
-
-actions:
-    resource: "@ActionsBundle/Resources/config/routing.yml"
+#dialogues:
+#    resource: "@DialoguesBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#actions:
+#    resource: "@ActionsBundle/Resources/config/routing.yml"
     
 systeme_jeu:
     resource: "@SystemeJeuBundle/Resources/config/routing.yml"

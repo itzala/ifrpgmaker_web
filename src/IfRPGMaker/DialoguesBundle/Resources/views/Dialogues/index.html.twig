@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block titre %} Choix list {% endblock %}
+{% block body %}
+{{ parent() }}
+    <section>
+         <ul>
+            <li>
+                <a href="{{ path('choix_new') }}">
+                    Ajouter
+                </a>
+            </li>
+        </ul>
+
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Intro</th>
+                    <th>Description</th>
+                    <th>Parent</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('choix_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.intro | slice(0, 30) }}
+                        {%if entity.intro | length > 30 %}
+                        ...
+                        {% endif %}
+                    </td>
+                    <td>{{ entity.description | slice(0, 30) }}
+                        {%if entity.description | length > 30 %}
+                        ...
+                        {% endif %}
+                    </td>
+                    <td>{% if entity.parent is defined %}
+                        <a href="{{ path('choix_show', { 'id': entity.parent}) }}">{{ entity.parent }}</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('choix_show', { 'id': entity.id }) }}">Détails</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('choix_edit', { 'id': entity.id }) }}">Editer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="3">Aucun choix trouv&eacute;</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>   
+    </section>
+{% endblock %}

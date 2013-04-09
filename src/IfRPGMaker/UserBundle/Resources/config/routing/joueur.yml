@@ -1,0 +1,30 @@
+joueur:
+    pattern:  /
+    defaults: { _controller: "UserBundle:Joueur:index" }
+
+joueur_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "UserBundle:Joueur:show" }
+
+joueur_new:
+    pattern:  /new
+    defaults: { _controller: "UserBundle:Joueur:new" }
+
+joueur_create:
+    pattern:  /create
+    defaults: { _controller: "UserBundle:Joueur:create" }
+    requirements: { _method: post }
+
+joueur_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "UserBundle:Joueur:edit" }
+
+joueur_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "UserBundle:Joueur:update" }
+    requirements: { _method: post }
+
+joueur_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "UserBundle:Joueur:delete" }
+    requirements: { _method: post }
