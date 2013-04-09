@@ -26,7 +26,7 @@
             {% for entity in entities %}
                 <tr>
                     <td><a href="{{ path('choix_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.intro | slice(0, 30) }}
+                    <td>{{ entity.intro| slice(0, 30) }}
                         {%if entity.intro | length > 30 %}
                         ...
                         {% endif %}
@@ -36,7 +36,8 @@
                         ...
                         {% endif %}
                     </td>
-                    <td>{% if entity.parent is defined %}
+                    <td>
+                        {% if entity.parent != null %}
                         <a href="{{ path('choix_show', { 'id': entity.parent}) }}">{{ entity.parent }}</a>
                         {% endif %}
                     </td>

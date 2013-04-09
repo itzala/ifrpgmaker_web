@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block titre %} Evenement edit {% endblock %}
+{% block body %}
+    {{ parent() }}
+    <section>
+
+    <form action="{{ path('evenement_update', { 'intro': entity.intro.id , 'description': entity.description.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit">Edit</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('evenement') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('evenement_delete', { 'intro': entity.intro.id , 'description': entity.description.id }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+    </section>
+{% endblock %}

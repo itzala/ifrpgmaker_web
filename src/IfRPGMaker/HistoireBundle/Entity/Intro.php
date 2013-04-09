@@ -19,7 +19,6 @@ class Intro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-        
     private $id;
 
     /**
@@ -30,6 +29,18 @@ class Intro
     private $contenu;
 
 
+    /**
+     * Set id
+     *
+     * @return Intro 
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $this;
+    }
+    
     /**
      * Get id
      *
@@ -71,4 +82,9 @@ class Intro
     {
         return array('id' => $this->id);
     }
+    
+//    public function __construct($id, $contenu) {
+//        $this->id = $id;
+//        $this->contenu = $contenu;
+//    }
 }

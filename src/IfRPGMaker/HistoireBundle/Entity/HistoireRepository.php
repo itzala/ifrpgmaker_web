@@ -50,6 +50,62 @@ class HistoireRepository extends EntityRepository
         return array("sql" => $sql, "entities"=> $res);
     }
     
+    
+    public function findByAuteur($auteur_id)
+    {
+        $sql = "SELECT * FROM Histoire WHERE auteur_id = " .$auteur_id;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.auteur_id = :auteur_id")
+                ->setParameter("auteur_id", $auteur_id)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    
+    
+    public function findByCreation($creation)
+    {
+        $sql = "SELECT * FROM Histoire WHERE creation = " .$creation->getTimestamp();
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.creation = :creation")
+                ->setParameter("creation", $creation->getTimestamp())
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    
+    
+    public function findByModification($modification)
+    {
+        $sql = "SELECT * FROM Histoire WHERE modification = " .$modification->getTimestamp();
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.modification = :modification")
+                ->setParameter("modification", $modification->getTimestamp())
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    
+    
+    public function findByDescription($description)
+    {
+        $sql = "SELECT * FROM Histoire WHERE description = " .$description;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.description = :description")
+                ->setParameter("description", $description)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    
     public function findAll()
     {
         $sql = "SELECT * FROM Histoire";
@@ -61,30 +117,51 @@ class HistoireRepository extends EntityRepository
     }
     
     public function insert($entity) {
-        $sql = "INSERT INTO Histoire (contenu) VALUES ('".$entity->getContenu()."')";
+        $sql = "INSERT INTO Histoire (titre, auteur_id, creation, modification, description) VALUES ('".
+                $entity->getTitre().
+                ", '".$entity->getAuteur()->getPseudo().
+                ", CURRENT_TIMESTAMP ".
+                ", CURRENT_TIMESTAMP ".
+                ", '".$entity->getDescription()->getContenu().
+                "')";
         $conn = $this->getConnection();
-        
-        $conn->insert('Histoire', array('contenu' => $entity->getContenu()));
+        $date_actuelle = new \DateTime;
+        $conn->insert('Histoire', array('titre' => $entity->getTitre(),
+            'titre' => $entity->getAuteur()->getPseudo(),
+            'creation' => $date_actuelle->getTimestamp(),
+            'modification' => $date_actuelle->getTimestamp(),
+            'description' => $entity->getContenu()));
         
         return array('sql' => $sql, 'id' => $conn->lastInsertId());
     }
     
     public function delete($entity) {
-        $sql = "DELETE FROM Histoire WHERE id=".$entity->getId();
+        $sql = "DELETE FROM Histoire WHERE titre=".$entity->getTitre()." AND auteur_id=".$entity->getAuteur()->getPseudo();
         
         $conn = $this->getConnection();
-        $conn->delete('Histoire', array('id' => $entity->getId()));
+        $conn->delete('Histoire', array('titre' => $entity->getTitre(), 'auteur' => $entity->getAuteur()->getPseudo()));
         
         return $sql;
     }
     
     public function update($entity) {
-        $sql = "UPDATE Histoire SET contenu='".$entity->getContenu()."' WHERE id =".$entity->getId();
+        $sql = "UPDATE Histoire SET titre='".$entity->getTitre().
+                ", auteur_id=".$entity->getAuteur()->getPseudo().
+                ", creation=".$entity->getCreation()->getTimestamp().
+                ", modification= CURRENT_TIMESTAMP".
+                ", description=".$entity->getDescription().
+                "' WHERE titre=".$entity->getTitre()." AND auteur_id=".$entity->getAuteur()->getPseudo();
         
         $conn = $this->getConnection();
+        $date_actuelle = new \DateTime;
         $conn->update('Histoire', 
-                array('contenu' => $entity->getContenu()), 
-                array('id' => $entity->getId())
+                array('titre' => $entity->getTitre(),
+                    'auteur_id' => $entity->getAuteur()->getPseudo(),
+                    'creation' => $entity->getCreation()->getTimestamp(),
+                    'modification' => $date_actuelle->getTimestamp(),
+                    'description' => $entity->getDescription()
+                    ), 
+                array('titre' => $entity->getTitre(), 'auteur_id' => $entity->getAuteur()->getPseudo())
                 );
         
         return $sql;

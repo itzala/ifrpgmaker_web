@@ -24,8 +24,7 @@ class Choix
 
     /**
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Evenement")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="intro")
-     * @ORM\Column(name="intro")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="intro")
      * 
      */
     private $intro;
@@ -34,7 +33,6 @@ class Choix
     /**
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Evenement")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="description")
-     * @ORM\Column(name="description")
      * 
      */
     private $description;
@@ -43,7 +41,6 @@ class Choix
     /**
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Choix")
      * @ORM\JoinColumn(nullable=true)
-     * @ORM\Column(name="parent")
      * 
      */
     private $parent;

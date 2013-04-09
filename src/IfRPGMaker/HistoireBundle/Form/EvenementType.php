@@ -8,30 +8,35 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Doctrine\ORM\EntityRepository;
 
-class ChoixType extends AbstractType
+class EvenementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("evenement", 'entity', array(
-                'class' => 'HistoireBundle:Evenement',
+            ->add("intro", 'entity', array(
+                'class' => 'HistoireBundle:Intro',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('c');
                     },
             ))
-            ->add("parent")
+            ->add("description", 'entity', array(
+                'class' => 'HistoireBundle:Description',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('c');
+                    },
+            ))
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'IfRPGMaker\HistoireBundle\Entity\Choix'
+            'data_class' => 'IfRPGMaker\HistoireBundle\Entity\Evenement'
         ));
     }
 
     public function getName()
     {
-        return 'ifrpgmaker_histoirebundle_choixtype';
+        return 'ifrpgmaker_histoirebundle_evenementtype';
     }
 }

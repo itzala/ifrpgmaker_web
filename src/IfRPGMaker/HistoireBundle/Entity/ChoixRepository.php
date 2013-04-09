@@ -18,7 +18,7 @@ class ChoixRepository extends EntityRepository
         return $this->_em->getConnection();
     }
     
-    public function myfind($id)
+    public function find($id)
     {
         $sql = "SELECT * FROM Choix WHERE id = ".$id;
         
@@ -35,7 +35,7 @@ class ChoixRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
-    public function myfindByIntro($intro)
+    public function findByIntro($intro)
     {
         $sql = "SELECT * FROM Choix WHERE intro_id=" .$intro->getId();
         
@@ -48,7 +48,7 @@ class ChoixRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
-    public function myfindByDescription($description)
+    public function findByDescription($description)
     {
         $sql = "SELECT * FROM Choix WHERE description_id=" .$description->getId();
         
@@ -61,7 +61,7 @@ class ChoixRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
-    public function myfindByParent($parent)
+    public function findByParent($parent)
     {
         $sql = "SELECT * FROM Choix WHERE parent_id=" .$parent->getId();
         
@@ -74,7 +74,7 @@ class ChoixRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
-    public function myfindAll()
+    public function findAll()
     {
         $sql = "SELECT * FROM Choix";
         

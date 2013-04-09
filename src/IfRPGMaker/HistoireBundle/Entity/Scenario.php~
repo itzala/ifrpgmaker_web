@@ -16,7 +16,6 @@ class Scenario
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Histoire")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="auteur_id")
-     * @ORM\Column(name="auteur")
      * 
      */
     private $auteur;
@@ -26,7 +25,6 @@ class Scenario
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Histoire")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="titre")
-     * @ORM\Column(name="titre")
      */
     private $titre_histoire;
     
@@ -35,7 +33,6 @@ class Scenario
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Choix")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\Column(name="debut")
      * 
      */
     private $debut;

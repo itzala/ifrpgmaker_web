@@ -20,11 +20,17 @@ class ScenarioRepository extends EntityRepository
     
     public function find($id)
     {
-        $sql = "SELECT * FROM Scenario WHERE id = ".$id;
+        $sql = "SELECT * FROM Scenario WHERE titre=".$id['titre'].
+                " AND auteur_id=".$id['auteur_id'].
+                " AND debut_id=".$id['debut_id'];
         
         $query = $this->createQueryBuilder("i")
-                ->where("i.id = :id")
-                ->setParameter("id", $id)
+                ->where("i.titre = :titre")
+                ->setParameter("titre", $id['titre'])
+                ->andWhere("i.auteur_id = :auteur_id")
+                ->setParameter("auteur_id", $id['auteur_id'])
+                ->andWhere("i.debut_id = :debut_id")
+                ->setParameter("debut_id", $id['debut_id'])
                 ->getQuery();
                 
        $res = $query->getResult();
@@ -35,13 +41,37 @@ class ScenarioRepository extends EntityRepository
         return array("sql" => $sql, "entity"=> $res);
     }
     
-    public function findByContenu($contenu)
+    public function findByAuteur($auteur)
     {
-        $sql = "SELECT * FROM Scenario WHERE contenu = " .$contenu;
+        $sql = "SELECT * FROM Scenario WHERE auteur_id=" .$auteur;
         
         $query = $this->createQueryBuilder("i")
-                ->where("i.contenu = :contenu")
-                ->setParameter("contenu", $contenu)
+                ->where("i.auteur_id = :auteur_id")
+                ->setParameter("auteur_id", $auteur)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    public function findByDebut($debut_id)
+    {
+        $sql = "SELECT * FROM Scenario WHERE debut_id=" .$debut_id;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.debut_id = :debut_id")
+                ->setParameter("debut_id", $debut_id)
+                ->getQuery();
+        
+        $res = $query->getResult();
+        return array("sql" => $sql, "entities"=> $res);
+    }
+    public function findByTitre($titre)
+    {
+        $sql = "SELECT * FROM Scenario WHERE titre=" .$titre;
+        
+        $query = $this->createQueryBuilder("i")
+                ->where("i.titre = :titre")
+                ->setParameter("titre", $titre)
                 ->getQuery();
         
         $res = $query->getResult();
@@ -59,12 +89,20 @@ class ScenarioRepository extends EntityRepository
     }
     
     public function insert($entity) {
-        $sql = "INSERT INTO Scenario (contenu) VALUES ('".$entity->getContenu()."')";
+        $sql = "INSERT INTO Scenario (auteur_id, debut_id, titre) VALUES ('".
+                $entity->getAuteur()->getPseudo().", ".
+                $entity->getDebut()->getId().", ".
+                $entity->getTitre().
+                "')";
         $conn = $this->getConnection();
         
-        $conn->insert('Scenario', array('contenu' => $entity->getContenu()));
+        $conn->insert('Scenario', array('auteur_id' => $entity->getAuteur()->getPseudo(),
+            'debut_id' => $entity->getDebut()->getId(),
+            'titre' => $entity->getTitre()));
         
-        return array('sql' => $sql, 'id' => $conn->lastInsertId());
+        return array('sql' => $sql,
+            'auteur_id' => $entity->getAuteur()->getPseudo(),
+            'debut_id' => $entity->getDebut()->getId());
     }
     
     public function delete($entity) {
@@ -77,12 +115,22 @@ class ScenarioRepository extends EntityRepository
     }
     
     public function update($entity) {
-        $sql = "UPDATE Scenario SET contenu='".$entity->getContenu()."' WHERE id =".$entity->getId();
+        $sql = "UPDATE Scenario SET auteur='".$entity->getAuteur()->getPseudo().
+                "', debut_id=".$entity->getDebut()->getId().
+                ", titre_histoire_id='".$entity->getTitre().
+                "' WHERE titre=".$entity->getTitre().
+                " AND auteur_id=".$entity->getAuteur()->getPseudo().
+                " AND debut_id=".$entity->getDebut()->getId();
         
         $conn = $this->getConnection();
         $conn->update('Scenario', 
-                array('contenu' => $entity->getContenu()), 
-                array('id' => $entity->getId())
+                array('auteur' => $entity->getAuteur()->getPseudo(),
+                    'debut_id' => $entity->getDebut()->getId(),
+                    'titre_histoire_id' => $entity->getTitre()
+                    ), 
+                array('auteur_id' => $entity->getAuteur()->getPseudo(),
+                    'debut_id' => $entity->getDebut()->getId(),
+                    'titre_histoire_id' => $entity->getTitre())
                 );
         
         return $sql;

@@ -1,0 +1,30 @@
+evenement:
+    pattern:  /
+    defaults: { _controller: "HistoireBundle:Evenement:index" }
+
+evenement_show:
+    pattern:  /{intro}/{description}/show
+    defaults: { _controller: "HistoireBundle:Evenement:show" }
+
+evenement_new:
+    pattern:  /new
+    defaults: { _controller: "HistoireBundle:Evenement:new" }
+
+evenement_create:
+    pattern:  /create
+    defaults: { _controller: "HistoireBundle:Evenement:create" }
+    requirements: { _method: post }
+
+evenement_edit:
+    pattern:  /{intro}/{description}/edit
+    defaults: { _controller: "HistoireBundle:Evenement:edit" }
+
+evenement_update:
+    pattern:  /{intro}/{description}/update
+    defaults: { _controller: "HistoireBundle:Evenement:update" }
+    requirements: { _method: post }
+
+evenement_delete:
+    pattern:  /{intro}/{description}/delete
+    defaults: { _controller: "HistoireBundle:Evenement:delete" }
+    requirements: { _method: post }
