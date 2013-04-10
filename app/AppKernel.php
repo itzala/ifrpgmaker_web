@@ -22,16 +22,12 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             
             new IfRPGMaker\UserBundle\UserBundle(),
-            new IfRPGMaker\HistoireBundle\HistoireBundle(),
             new IfRPGMaker\SiteBundle\SiteBundle(),
-            
-            new IfRPGMaker\ContraintesBundle\ContraintesBundle(),
-//            new IfRPGMaker\ActionsBundle\ActionsBundle(),
-//            new IfRPGMaker\DialoguesBundle\DialoguesBundle(),
-            
+            new IfRPGMaker\HistoireBundle\HistoireBundle(),
+            new IfRPGMaker\ActionsBundle\ActionsBundle(),
+            new IfRPGMaker\DialoguesBundle\DialoguesBundle(),
             new IfRPGMaker\PersonnageBundle\PersonnageBundle(),
             new IfRPGMaker\SystemeJeuBundle\SystemeJeuBundle(),
-            
         );
         
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

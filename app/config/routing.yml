@@ -1,10 +1,3 @@
-#dialogues:
-#    resource: "@DialoguesBundle/Resources/config/routing.yml"
-#    prefix:   /
-#
-#actions:
-#    resource: "@ActionsBundle/Resources/config/routing.yml"
-    
 systeme_jeu:
     resource: "@SystemeJeuBundle/Resources/config/routing.yml"
     prefix:   /
@@ -13,9 +6,13 @@ personnage:
     resource: "@PersonnageBundle/Resources/config/routing.yml"
     prefix:   /
 
-contraintes:
-    resource: "@ContraintesBundle/Resources/config/routing.yml"
-    prefix:   /constr
+dialogues:
+    resource: "@DialoguesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+actions:
+    resource: "@ActionsBundle/Resources/config/routing.yml"
+    prefix:   /
 
 site:
     resource: "@SiteBundle/Resources/config/routing.yml"

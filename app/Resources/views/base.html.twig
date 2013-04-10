@@ -8,42 +8,45 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
-        {% block body %}                        
-            <h1>{% block titre %}{% endblock %}</h1>
-            
-            {% block menu %}
-                <nav>
-                    <ul>
-                        <li class="item_menu"><a href="{{ path("site_accueil") }}">Accueil</a></li>                        
-                        <li class="item_menu"><a class="to_do" href="{{ path("site_accueil") }}">Actions</a></li>
-                        <li class="item_menu"><a class="to_do" href="{{ path("site_accueil") }}">Contraintes</a></li>
-                        <li class="item_menu"><a class="to_do" href="{{ path("site_accueil") }}">Dialogues</a></li>
-                        <li class="item_menu"><a class="doing" href="{{ path("histoire_index") }}">Histoire</a></li>
-                        <li class="item_menu"><a class="doing" href="{{ path("personnage") }}">Personnage</a></li>
-                        <li class="item_menu"><a class="doing" href="{{ path("systeme_jeu") }}">Syst&egrave;me de jeu</a></li>                                                
-                        <li class="item_menu"><a href="{{ path("joueur") }}">Joueurs</a></li>                        
-                    </ul>        
-                </nav>
-            {% endblock %}
-        
-            {% block flash %}
-            {% if app.session.flashbag | length > 0%}
-                <aside>
-                {% for f in app.session.flashbag %}
-                        <p>
-                            {% for elem in f %}
-                                {{ elem | raw}}
-                            {% else %}
-                                {{ f | raw}}
-                            {% endfor %}
-                        </p>
-                    {% endfor %}
-                </aside>
-             {% endif %}
-            {% endblock %}
-           
+    <body>                   
+        <h1>{% block titre %}{% endblock %}</h1>
+
+            <nav>
+                {% block menu %}
+                <ul>
+                    <li class="item_menu"><a href="{{ path("site_accueil") }}">Accueil</a></li>                        
+                    <li class="item_menu"><a class="doing" href="{{ path("actions") }}">Actions</a></li>
+                    <li class="item_menu"><a class="to_do" href="{{ path("site_accueil") }}">Contraintes</a></li>
+                    <li class="item_menu"><a class="doing" href="{{ path("dialogues") }}">Dialogues</a></li>
+                    <li class="item_menu"><a class="doing" href="{{ path("histoire") }}">Histoire</a></li>
+                    <li class="item_menu"><a class="doing" href="{{ path("personnage") }}">Personnage</a></li>
+                    <li class="item_menu"><a class="doing" href="{{ path("systemejeu") }}">Syst&egrave;me de jeu</a></li>                                                
+                    <li class="item_menu"><a href="{{ path("joueur") }}">Joueurs</a></li>                        
+                </ul>
+                {% endblock %}
+                {% block nav_partie %}
+                {% endblock %}
+            </nav>
+
+        {% block flash %}
+        {% if app.session.flashbag | length > 0%}
+            <aside>
+            {% for f in app.session.flashbag %}
+                    <p>
+                        {% for elem in f %}
+                            {{ elem | raw}}
+                        {% else %}
+                            {{ f | raw}}
+                        {% endfor %}
+                    </p>
+                {% endfor %}
+            </aside>
+         {% endif %}
         {% endblock %}
+           
+        {% block body %}     
+        {% endblock %}
+        
         
         {% block footer %}
             <footer>
