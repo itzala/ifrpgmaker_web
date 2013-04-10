@@ -1,5 +1,10 @@
-<h1>Joueur creation</h1>
+{% extends "UserBundle::base.html.twig" %}
 
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Joueur creation {% endblock %}
+
+{% block body %}
 <form action="{{ path('joueur_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
@@ -14,3 +19,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

@@ -1,5 +1,10 @@
-<h1>Joueur list</h1>
+{% extends "UserBundle::base.html.twig" %}
 
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Joueur list {% endblock %}
+
+{% block body %}
 <table class="records_list">
     <thead>
         <tr>
@@ -37,3 +42,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}
