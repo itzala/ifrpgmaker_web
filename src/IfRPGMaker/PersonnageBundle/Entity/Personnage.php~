@@ -13,50 +13,66 @@ use Doctrine\ORM\Mapping as ORM;
 class Personnage
 {
     /**
-     * @var string
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
-
+    
+    
     /**
-     * @var int
      *
-     * @ORM\Column(name="taille", type="int")
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Race")
      */
-    private $taille;
-        
-    
-    /**
-     * 
-     * @ORM\Column(name="metier", type="string", length=40)
-     */
-    
-    private $metier;
-    
-    /**
-     * 
-     * @ORM\Column(name="classe", type="string", length=40)
-     */
-    
-    private $classe;
-    
-    
-    /**
-     * 
-     * @ORM\Column(name="race", type="string", length=40)
-     */
-    
     private $race;
     
     
     /**
-     * 
-     * @ORM\Column(name="pseudo", type="string", length=40)
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Metier")
      */
+    private $metier;
     
-    private $pseudo;
     
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Classe")
+     */
+    private $classe;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
+     */
+    private $joueur;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Taille")
+     */
+    private $taille;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set nom
@@ -79,28 +95,5 @@ class Personnage
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set taille
-     *
-     * @param int $taille
-     * @return Personnage
-     */
-    public function setTaille($taille)
-    {
-        $this->taille = $taille;
-    
-        return $this;
-    }
-
-    /**
-     * Get taille
-     *
-     * @return int 
-     */
-    public function getTaille()
-    {
-        return $this->taille;
     }
 }

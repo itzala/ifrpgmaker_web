@@ -5,4 +5,3 @@ fos_user_bundle:
 user_bundle_joueur:
     resource: "@UserBundle/Resources/config/routing/joueur.yml"
     prefix:   /joueur
- 

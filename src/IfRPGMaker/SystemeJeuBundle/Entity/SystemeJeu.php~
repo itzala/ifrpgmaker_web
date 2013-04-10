@@ -21,13 +21,6 @@ class SystemeJeu
      */
     private $id;
 
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="pseudo")
-     * 
-     */
-    private $createur;
 
     /**
      * Get id

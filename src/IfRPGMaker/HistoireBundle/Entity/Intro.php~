@@ -19,7 +19,6 @@ class Intro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-        
     private $id;
 
     /**
@@ -61,14 +60,5 @@ class Intro
     public function getContenu()
     {
         return $this->contenu;
-    }
-    
-    public function __toString() {
-        return $this->contenu;
-    }
-    
-    public function getArrayIds()
-    {
-        return array('id' => $this->id);
     }
 }

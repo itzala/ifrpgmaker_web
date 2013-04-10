@@ -27,6 +27,13 @@ class Race
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu")
+     */
+    private $systeme_jeu;
 
 
     /**
@@ -60,5 +67,28 @@ class Race
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set systeme_jeu
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu
+     * @return Race
+     */
+    public function setSystemeJeu(\IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu = null)
+    {
+        $this->systeme_jeu = $systemeJeu;
+    
+        return $this;
+    }
+
+    /**
+     * Get systeme_jeu
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu 
+     */
+    public function getSystemeJeu()
+    {
+        return $this->systeme_jeu;
     }
 }

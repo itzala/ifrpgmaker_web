@@ -13,59 +13,70 @@ use Doctrine\ORM\Mapping as ORM;
 class Dictionnaire
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Keywords")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="keyword")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="synonym", type="string", length=40)
+     */
+    private $synonym;
+    
+    
+    /**
      * 
+     * 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Keywords")
      */
     private $keyword;
 
-       /**
-     * @var string
-     *
-     * @ORM\Id
-     * @ORM\Column(name="synonyme", type="string", length=40)
-     */
-    private $synonyme;
-    
-
-    public function __construct($keyword, $synonyme) {
-        $this->keyword = $keyword;
-        $this->synonyme = $synonyme;
-    }
-
 
     /**
-     * Set synonyme
+     * Get id
      *
-     * @param string $synonyme
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set synonym
+     *
+     * @param string $synonym
      * @return Dictionnaire
      */
-    public function setSynonyme($synonyme)
+    public function setSynonym($synonym)
     {
-        $this->synonyme = $synonyme;
+        $this->synonym = $synonym;
     
         return $this;
     }
 
     /**
-     * Get synonyme
+     * Get synonym
      *
-     * @return string
+     * @return string 
      */
-    public function getSynonyme()
+    public function getSynonym()
     {
-        return $this->synonyme;
+        return $this->synonym;
     }
 
     /**
      * Set keyword
      *
-     * @param IfRPGMaker\ActionsBundle\Entity\Keywords $keyword
+     * @param \IfRPGMaker\ActionsBundle\Entity\Keywords $keyword
      * @return Dictionnaire
-     *
      */
-    public function setKeyword(IfRPGMaker\ActionsBundle\Entity\Keywords $keyword)
+    public function setKeyword(\IfRPGMaker\ActionsBundle\Entity\Keywords $keyword = null)
     {
         $this->keyword = $keyword;
     
@@ -75,20 +86,10 @@ class Dictionnaire
     /**
      * Get keyword
      *
-     * @return IfRPGMaker\ActionsBundle\Entity\Keywords
-     *
+     * @return \IfRPGMaker\ActionsBundle\Entity\Keywords 
      */
     public function getKeyword()
     {
         return $this->keyword;
-    }
-
-    public function __toString() {
-        return '('.$this->keyword.'; '.this->synonyme.')';
-    }
-    
-    public function getArrayIds()
-    {
-        return array('synonyme' => $this->synonyme, 'keyword' => $this->keyword);
     }
 }

@@ -1,8 +1,28 @@
-{% extends "::base.html.twig"%}
-{% block title %} {{parent()}} | Choix Editer{% endblock %}
-{% block titre %} Choix Editer{% endblock %}
+{% extends "PersonnageBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} CaractPersoHistoire edit {% endblock %}
+
 {% block body %}
-    {{parent()}}
-    <section>
-    </section>
+<form action="{{ path('caractpersohistoire_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('caractpersohistoire') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('caractpersohistoire_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
 {% endblock %}

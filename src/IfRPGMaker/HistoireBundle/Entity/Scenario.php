@@ -11,38 +11,62 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="IfRPGMaker\HistoireBundle\Entity\ScenarioRepository")
  */
 class Scenario
-{    
+{
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Histoire")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="auteur_id")
-     * @ORM\Column(name="auteur")
-     * 
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $auteur;
+    private $id;
     
     
     /**
-     * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Histoire")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="titre")
-     * @ORM\Column(name="titre")
      */
-    private $titre_histoire;
+    private $histoire;
     
     
     /**
-     * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Choix")
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\Column(name="debut")
-     * 
      */
     private $debut;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set histoire
+     *
+     * @param \IfRPGMaker\HistoireBundle\Entity\Histoire $histoire
+     * @return Scenario
+     */
+    public function setHistoire(\IfRPGMaker\HistoireBundle\Entity\Histoire $histoire = null)
+    {
+        $this->histoire = $histoire;
     
-    public function __construct($histoire) {
-        $this->auteur = $histoire->getAuteur();
-        $this->titre_histoire = $histoire;
+        return $this;
+    }
+
+    /**
+     * Get histoire
+     *
+     * @return \IfRPGMaker\HistoireBundle\Entity\Histoire 
+     */
+    public function getHistoire()
+    {
+        return $this->histoire;
     }
 
     /**
@@ -51,7 +75,7 @@ class Scenario
      * @param \IfRPGMaker\HistoireBundle\Entity\Choix $debut
      * @return Scenario
      */
-    public function setDebut(\IfRPGMaker\HistoireBundle\Entity\Choix $debut)
+    public function setDebut(\IfRPGMaker\HistoireBundle\Entity\Choix $debut = null)
     {
         $this->debut = $debut;
     
@@ -66,60 +90,5 @@ class Scenario
     public function getDebut()
     {
         return $this->debut;
-    }
-
-    /**
-     * Set auteur
-     *
-     * @param \IfRPGMaker\UserBundle\Entity\Joueur $auteur
-     * @return Scenario
-     */
-    public function setAuteur(\IfRPGMaker\UserBundle\Entity\Joueur $auteur)
-    {
-        $this->auteur = $auteur;
-    
-        return $this;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return \IfRPGMaker\UserBundle\Entity\Joueur 
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
-     * Set titre_histoire
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Histoire $titreHistoire
-     * @return Scenario
-     */
-    public function setTitreHistoire(\IfRPGMaker\HistoireBundle\Entity\Histoire $titreHistoire)
-    {
-        $this->titre_histoire = $titreHistoire;
-    
-        return $this;
-    }
-
-    /**
-     * Get titre_histoire
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Histoire 
-     */
-    public function getTitreHistoire()
-    {
-        return $this->titre_histoire;
-    }
-    
-    public function __toString() {
-        return $this->debut->__toString();
-    }
-    
-    public function getArrayIds()
-    {
-        return array('auteur' => $this->auteur, 'titre_histoire' => $this->titre_histoire, 'debut' => $this->debut);
     }
 }

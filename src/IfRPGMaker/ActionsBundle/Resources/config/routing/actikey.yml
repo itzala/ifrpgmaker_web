@@ -1,0 +1,30 @@
+actikey:
+    pattern:  /
+    defaults: { _controller: "ActionsBundle:ActiKey:index" }
+
+actikey_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ActionsBundle:ActiKey:show" }
+
+actikey_new:
+    pattern:  /new
+    defaults: { _controller: "ActionsBundle:ActiKey:new" }
+
+actikey_create:
+    pattern:  /create
+    defaults: { _controller: "ActionsBundle:ActiKey:create" }
+    requirements: { _method: post }
+
+actikey_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ActionsBundle:ActiKey:edit" }
+
+actikey_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ActionsBundle:ActiKey:update" }
+    requirements: { _method: post }
+
+actikey_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ActionsBundle:ActiKey:delete" }
+    requirements: { _method: post }

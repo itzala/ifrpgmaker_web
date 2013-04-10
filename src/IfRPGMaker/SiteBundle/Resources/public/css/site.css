@@ -39,10 +39,20 @@ footer
     margin-right: 10px;
 }
 
-aside
+body aside
 {
     float: right;
     border: 1px solid blue;
     border-radius: 5px;
     padding : 1em;    
+}
+
+nav aside
+{
+    float: none;
+}
+
+nav aside ul li
+{
+    display: inline-block;
 }

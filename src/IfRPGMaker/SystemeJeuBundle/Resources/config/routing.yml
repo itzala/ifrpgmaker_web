@@ -1,31 +1,41 @@
-systeme_jeu_bundle_systeme_jeu:
-    resource: "@SystemeJeuBundle/Resources/config/routing/systeme_jeu.yml"
-    prefix:   /systeme_jeu
-    
-systeme_jeu_bundle_caract:
-    resource: "@SystemeJeuBundle/Resources/config/routing/caract.yml"
-    prefix:   /caract
-    
-systeme_jeu_bundle_metier:
-    resource: "@SystemeJeuBundle/Resources/config/routing/metier.yml"
-    prefix:   /metier
-    
-systeme_jeu_bundle_race:
-    resource: "@SystemeJeuBundle/Resources/config/routing/race.yml"
-    prefix:   /race
-    
-systeme_jeu_bundle_type_objet:
-    resource: "@SystemeJeuBundle/Resources/config/routing/type_objet.yml"
-    prefix:   /type_objet
-    
-systeme_jeu_bundle_classe:
+systeme_jeu_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SystemeJeuBundle:Default:index }
+
+SystemeJeuBundle_caracteristique:
+    resource: "@SystemeJeuBundle/Resources/config/routing/caracteristique.yml"
+    prefix:   /caracteristique
+
+SystemeJeuBundle_classe:
     resource: "@SystemeJeuBundle/Resources/config/routing/classe.yml"
     prefix:   /classe
-    
-systeme_jeu_bundle_objet:
+
+
+SystemeJeuBundle_metier:
+    resource: "@SystemeJeuBundle/Resources/config/routing/metier.yml"
+    prefix:   /metier
+
+SystemeJeuBundle_objet:
     resource: "@SystemeJeuBundle/Resources/config/routing/objet.yml"
     prefix:   /objet
+
+SystemeJeuBundle_partiecorps:
+    resource: "@SystemeJeuBundle/Resources/config/routing/partiecorps.yml"
+    prefix:   /partiecorps
+
+SystemeJeuBundle_systemejeu:
+    resource: "@SystemeJeuBundle/Resources/config/routing/systemejeu.yml"
+    prefix:   /systemejeu
+
+SystemeJeuBundle_taille:
+    resource: "@SystemeJeuBundle/Resources/config/routing/taille.yml"
+    prefix:   /taille
+
+SystemeJeuBundle_typeobjet:
+    resource: "@SystemeJeuBundle/Resources/config/routing/typeobjet.yml"
+    prefix:   /typeobjet
     
-systeme_jeu_bundle_parties_corps:
-    resource: "@SystemeJeuBundle/Resources/config/routing/parties_corps.yml"
-    prefix:   /parties_corps
+SystemeJeuBundle_race:
+    resource: "@SystemeJeuBundle/Resources/config/routing/race.yml"
+    prefix:   /race
+

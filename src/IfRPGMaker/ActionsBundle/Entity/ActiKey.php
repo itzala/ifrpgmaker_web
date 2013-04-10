@@ -13,59 +13,51 @@ use Doctrine\ORM\Mapping as ORM;
 class ActiKey
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Keywords")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="keyword")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    
+    /**
      * 
+     * 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Keywords")
      */
     private $keyword;
-
-   /**
-     * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Actions")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="action")
+    
+    
+    /**
      * 
+     * 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Actions")
      */
     private $action;
     
-
-    public function __construct($keyword, $action) {
-        $this->keyword = $keyword;
-        $this->action = $action;
-    }
-
-
-    /**
-     * Set action
-     *
-     * @param \IfRPGMaker\ActionsBundle\Entity\Actions $action
-     * @return ActiKey
-     */
-    public function setAction(\IfRPGMaker\ActionsBundle\Entity\Actions $action)
-    {
-        $this->action = $action;
     
-        return $this;
-    }
+    
+
 
     /**
-     * Get action
+     * Get id
      *
-     * @return \IfRPGMaker\ActionsBundle\Entity\Actions
+     * @return integer 
      */
-    public function getAction()
+    public function getId()
     {
-        return $this->action;
+        return $this->id;
     }
 
     /**
      * Set keyword
      *
-     * @param IfRPGMaker\ActionsBundle\Entity\Keywords $keyword
+     * @param \IfRPGMaker\ActionsBundle\Entity\Keywords $keyword
      * @return ActiKey
-     *
      */
-    public function setKeyword(IfRPGMaker\ActionsBundle\Entity\Keywords $keyword)
+    public function setKeyword(\IfRPGMaker\ActionsBundle\Entity\Keywords $keyword = null)
     {
         $this->keyword = $keyword;
     
@@ -75,20 +67,33 @@ class ActiKey
     /**
      * Get keyword
      *
-     * @return IfRPGMaker\ActionsBundle\Entity\Keywords
-     *
+     * @return \IfRPGMaker\ActionsBundle\Entity\Keywords 
      */
-    public function getkeyword()
+    public function getKeyword()
     {
         return $this->keyword;
     }
 
-    public function __toString() {
-        return '('.$this->action.'; '.this->keyword.')';
-    }
-    
-    public function getArrayIds()
+    /**
+     * Set action
+     *
+     * @param \IfRPGMaker\ActionsBundle\Entity\Actions $action
+     * @return ActiKey
+     */
+    public function setAction(\IfRPGMaker\ActionsBundle\Entity\Actions $action = null)
     {
-        return array('action' => $this->action, 'keyword' => $this->keyword);
+        $this->action = $action;
+    
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \IfRPGMaker\ActionsBundle\Entity\Actions 
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 }

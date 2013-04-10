@@ -14,31 +14,18 @@ use IfRPGMaker\HistoireBundle\Form\IntroType;
  */
 class IntroController extends Controller
 {
-    
-    public function getRepository() {
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('HistoireBundle:Intro');
-    }
-    
-    
-    public function setFlash($titre, $message) {
-        $this->get('session')->setFlash(
-                $titre,
-                $message
-                );
-    }
-    
     /**
      * Lists all Intro entities.
      *
      */
     public function indexAction()
     {
-        $res = $this->getRepository()->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('HistoireBundle:Intro')->findAll();
 
         return $this->render('HistoireBundle:Intro:index.html.twig', array(
-            'entities' => $res['entities'],
-            'sql' => $res['sql'],
+            'entities' => $entities,
         ));
     }
 
@@ -48,8 +35,10 @@ class IntroController extends Controller
      */
     public function showAction($id)
     {
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];    
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
         }
@@ -57,10 +46,8 @@ class IntroController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('HistoireBundle:Intro:show.html.twig', array(
-            'entity'      => $entity,    
-            'sql'         => $res['sql'],
-            'delete_form' => $deleteForm->createView(),
-            ));
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -89,16 +76,11 @@ class IntroController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $rep = $this->getRepository();
-            $res = $rep->insert($entity);
-            $sql = $res['sql'];
-            
-            $message = 'La requête exécutée est la suivante : <br/>'.$sql;
-            $this->setFlash("sql", $message);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
 
-            
-            
-            return $this->redirect($this->generateUrl('intro_show', array('id' => $res['id'])));
+            return $this->redirect($this->generateUrl('intro_show', array('id' => $entity->getId())));
         }
 
         return $this->render('HistoireBundle:Intro:new.html.twig', array(
@@ -113,8 +95,9 @@ class IntroController extends Controller
      */
     public function editAction($id)
     {
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
@@ -125,7 +108,6 @@ class IntroController extends Controller
 
         return $this->render('HistoireBundle:Intro:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -137,9 +119,9 @@ class IntroController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $rep = $this->getRepository();
-        $res = $rep->find($id);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intro entity.');
@@ -150,16 +132,14 @@ class IntroController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $sql = $rep->update($entity);
-            
-            $this->setFlash("sql", $sql);
+            $em->persist($entity);
+            $em->flush();
 
-            return $this->redirect($this->generateUrl('intro_edit', $entity->getArrayIds()));
+            return $this->redirect($this->generateUrl('intro_edit', array('id' => $id)));
         }
 
         return $this->render('HistoireBundle:Intro:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -176,16 +156,14 @@ class IntroController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $res = $em->getRepository('HistoireBundle:Intro')->find($id);
-            $entity = $res["entity"];
+            $entity = $em->getRepository('HistoireBundle:Intro')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Intro entity.');
             }
 
-            $sql = $this->getRepository()->delete($entity);
-            
-             $this->setFlash("sql", $sql);
+            $em->remove($entity);
+            $em->flush();
         }
 
         return $this->redirect($this->generateUrl('intro'));

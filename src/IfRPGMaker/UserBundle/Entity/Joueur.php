@@ -13,27 +13,37 @@ use Doctrine\ORM\Mapping as ORM;
 class Joueur
 {
     /**
+     * @var integer
      *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="pseudo", type="string", length=40)
      */
-    
     private $pseudo;
-    
+
     /**
-     *
      * @var string
+     *
      * @ORM\Column(name="mdp", type="string", length=40)
-     * 
      */
-    
     private $mdp;
-    
-    
-    public function __construct($pseudo = "Anonyme", $mdp = "Anonymous")
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
     {
-        $this->mdp = $mdp;
-        $this->pseudo = $pseudo;
+        return $this->id;
     }
 
     /**
@@ -80,15 +90,5 @@ class Joueur
     public function getMdp()
     {
         return $this->mdp;
-    }
-    
-    public function __toString() 
-    {
-        return $this->pseudo;
-    }
-    
-    public function getArrayIds()
-    {
-        return array("pseudo" => $this->pseudo);
     }
 }

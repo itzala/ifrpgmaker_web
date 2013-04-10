@@ -1,0 +1,30 @@
+dictionnaire:
+    pattern:  /
+    defaults: { _controller: "ActionsBundle:Dictionnaire:index" }
+
+dictionnaire_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ActionsBundle:Dictionnaire:show" }
+
+dictionnaire_new:
+    pattern:  /new
+    defaults: { _controller: "ActionsBundle:Dictionnaire:new" }
+
+dictionnaire_create:
+    pattern:  /create
+    defaults: { _controller: "ActionsBundle:Dictionnaire:create" }
+    requirements: { _method: post }
+
+dictionnaire_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ActionsBundle:Dictionnaire:edit" }
+
+dictionnaire_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ActionsBundle:Dictionnaire:update" }
+    requirements: { _method: post }
+
+dictionnaire_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ActionsBundle:Dictionnaire:delete" }
+    requirements: { _method: post }

@@ -1,39 +1,39 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Description {% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-        <table class="record_properties">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ entity.id }}</td>
-                </tr>
-                <tr>
-                    <th>Contenu</th>
-                    <td>{{ entity.contenu }}</td>
-                </tr>
-            </tbody>
-        </table>
+{% extends "HistoireBundle::base.html.twig" %}
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('description') }}">
-                    Retour
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('description_edit', { 'id': entity.id }) }}">
-                    Editer
-                </a>
-            </li>
-            <li>
-                <form action="{{ path('description_delete', { 'id': entity.id }) }}" method="post">
-                    {{ form_widget(delete_form) }}
-                    <button type="submit">Supprimer</button>
-                </form>
-            </li>
-        </ul>
-</section>
-{% endblock %}
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Description {% endblock %}
+
+{% block body %}
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Contenu</th>
+            <td>{{ entity.contenu }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('description') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('description_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('description_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+ {% endblock %}

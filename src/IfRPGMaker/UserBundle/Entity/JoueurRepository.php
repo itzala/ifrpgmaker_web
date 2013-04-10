@@ -3,7 +3,6 @@
 namespace IfRPGMaker\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\DBAL\DriverManager;
 
 /**
  * JoueurRepository
@@ -13,65 +12,4 @@ use Doctrine\DBAL\DriverManager;
  */
 class JoueurRepository extends EntityRepository
 {
-    public function getConnection()
-    {
-        return $this->_em->getConnection();
-    }
-    
-    public function find($pseudo)
-    {
-        $sql = "SELECT * FROM Joueur WHERE pseudo = ".$pseudo;
-        
-        $query = $this->createQueryBuilder("j")
-                ->where("j.pseudo = :pseudo")
-                ->setParameter("pseudo", $pseudo)
-                ->getQuery();
-                
-       $res = $query->getResult();
-        if (empty($res))
-            $res = NULL;
-        else
-            $res = $res[0];
-        return array("sql" => $sql, "entity"=> $res);
-    }
-    
-    public function findAll()
-    {
-        $sql = "SELECT * FROM Joueur";
-        
-        $query = $this->createQueryBuilder("p")->getQuery();
-        $res = $query->getResult();
-        
-        return array("sql" => $sql, "entities" => $res);
-    }
-    
-    public function insert($entity) {
-        $sql = "INSERT INTO Joueur (pseudo, mdp) VALUES ('".$entity->getPseudo(). ',' .$entity->getMdp()."')";
-        $conn = $this->getConnection();
-        
-        $conn->insert('Joueur', array('pseudo' => $entity->getPseudo(), "mdp" => $entity->getMdp()));
-        
-        return array('sql' => $sql, 'pseudo' => $entity->getPseudo());
-    }
-
-    public function update($entity) {
-        $sql = "UPDATE Joueur SET pseudo='".$entity->getPseudo()."', mdp='" .$entity->getMdp(). "' WHERE id =".$entity->getId();
-        
-        $conn = $this->getConnection();
-        $conn->update('Joueur', 
-                array('pseudo' => $entity->getPseudo()), 
-                array('mdp' => $entity->getMdp())
-                );
-        
-        return $sql;
-    }
-    
-    public function delete($entity) {
-        $sql = "DELETE FROM Joueur WHERE id=".$entity->getPseudo();
-        
-        $conn = $this->getConnection();
-        $conn->delete('Joueur', array('pseudo' => $entity->getPseudo()));
-        
-        return $sql;
-    }
 }

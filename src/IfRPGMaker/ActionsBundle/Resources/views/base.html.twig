@@ -1,0 +1,14 @@
+{% extends "SiteBundle:Site:index.html.twig" %}
+
+
+
+{% block nav_partie %}
+<aside>
+    <ul>
+        <li><a href="{{path("actikey")}}">ActiKey</a></li>
+        <li><a href="{{path("actions")}}">Actions</a></li>
+        <li><a href="{{path("dictionnaire")}}">Dictionnaire</a></li>
+        <li><a href="{{path("keywords")}}">Keywords</a></li>
+    </ul>
+</aside>
+{% endblock %}

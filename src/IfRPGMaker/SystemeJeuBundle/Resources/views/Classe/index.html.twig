@@ -1,55 +1,43 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Syst&egrave;me de jeu list {% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-        <p>
-            Vous devrez également créer des <a href="{{ path("caract") }}">caractéristiques</a>, des <a href="{{ path("systeme_jeu") }}">équipements</a>,
-            des <a href="{{ path("race") }}">races</a>.
-        </p>
-    </section>
-    <section>
-         <ul>
-            <li>
-                <a href="{{ path('systeme_jeu_new') }}">
-                    Ajouter
-                </a>
-            </li>
-        </ul>
+{% extends "SystemeJeuBundle::base.html.twig" %}
 
-        <table class="records_list">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Cr&eacute;ateur</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('systeme_jeu_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.createur | slice(0, 30) }}
-                        {%if entity.createur | length > 30 %}
-                        ...
-                        {% endif %}
-                    </td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('systeme_jeu_show', { 'id': entity.id }) }}">Détails</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('systeme_jeu_edit', { 'id': entity.id }) }}">Editer</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% else %}
-                <tr><td colspan="3">Aucune systeme de jeu trouv&eacute;</td></tr>
-            {% endfor %}
-            </tbody>
-        </table>   
-    </section>
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Classe list {% endblock %}
+
+{% block body %}
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('classe_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nom }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('classe_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('classe_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('classe_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
 {% endblock %}

@@ -12,15 +12,32 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Keywords
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Id
      * @ORM\Column(name="keyword", type="string", length=40)
      */
     private $keyword;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set keyword
@@ -38,20 +55,10 @@ class Keywords
     /**
      * Get keyword
      *
-     * @return \IfRPGMaker\ActionsBundle\Entity\Actions $keyword
+     * @return string 
      */
     public function getKeyword()
     {
         return $this->keyword;
-    }
-
-
-    public function __toString() {
-        return $this->keyword;
-    }
-    
-    public function getArrayIds()
-    {
-        return array('keyword' => $this->keyword);
     }
 }

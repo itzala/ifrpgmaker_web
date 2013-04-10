@@ -1,3 +1,15 @@
-actions_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ActionsBundle:Default:index }
+ActionsBundle_actikey:
+    resource: "@ActionsBundle/Resources/config/routing/actikey.yml"
+    prefix:   /actikey
+    
+ActionsBundle_actions:
+    resource: "@ActionsBundle/Resources/config/routing/actions.yml"
+    prefix:   /actions
+
+ActionsBundle_keywords:
+    resource: "@ActionsBundle/Resources/config/routing/keywords.yml"
+    prefix:   /keywords
+
+ActionsBundle_dictionnaire:
+    resource: "@ActionsBundle/Resources/config/routing/dictionnaire.yml"
+    prefix:   /dictionnaire

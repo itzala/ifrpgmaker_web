@@ -1,0 +1,30 @@
+actions:
+    pattern:  /
+    defaults: { _controller: "ActionsBundle:Actions:index" }
+
+actions_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ActionsBundle:Actions:show" }
+
+actions_new:
+    pattern:  /new
+    defaults: { _controller: "ActionsBundle:Actions:new" }
+
+actions_create:
+    pattern:  /create
+    defaults: { _controller: "ActionsBundle:Actions:create" }
+    requirements: { _method: post }
+
+actions_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ActionsBundle:Actions:edit" }
+
+actions_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ActionsBundle:Actions:update" }
+    requirements: { _method: post }
+
+actions_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ActionsBundle:Actions:delete" }
+    requirements: { _method: post }

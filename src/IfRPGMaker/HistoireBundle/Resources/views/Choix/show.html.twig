@@ -1,52 +1,35 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
+{% extends "HistoireBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
 {% block titre %} Choix {% endblock %}
+
 {% block body %}
-{{ parent() }}
-    <section>
-        <h1>Choix</h1>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+    </tbody>
+</table>
 
-        <table class="record_properties">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ entity.id }}</td>
-                </tr>
-                <tr>
-                    <th>Intro</th>
-                    <td>{{ entity.intro }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ entity.description }}</td>
-                </tr>
-                <tr>
-                    <th>Choix Parent</th>
-                    <td>{% if entity.parent is defined %}
-                        <a href="{{ path('choix_show', { 'id': entity.parent}) }}">{{ entity.parent }}</a>
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('choix') }}">
-                    Retour
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('choix_edit', { 'id': entity.id }) }}">
-                    Editer
-                </a>
-            </li>
-            <li>
-                <form action="{{ path('choix_delete', { 'id': entity.id }) }}" method="post">
-                    {{ form_widget(delete_form) }}
-                    <button type="submit">Supprimer</button>
-                </form>
-            </li>
-        </ul>
-</section>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('choix') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('choix_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('choix_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
 {% endblock %}

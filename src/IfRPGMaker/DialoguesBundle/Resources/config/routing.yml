@@ -1,7 +1,4 @@
-DialoguesBundle_choix:
-        resource: "@DialoguesBundle/Resources/config/routing/dialogues.yml"
-        prefix:   /dialogues
+DialoguesBundle_dialogues:
+    resource: "@DialoguesBundle/Resources/config/routing/dialogues.yml"
+    prefix:   /dialogues
 
-Dialogues_index:
-    pattern:  /liste
-    defaults: { _controller: DialoguesBundle:Dialogues:index }

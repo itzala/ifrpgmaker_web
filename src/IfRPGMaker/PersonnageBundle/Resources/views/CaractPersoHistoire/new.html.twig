@@ -1,8 +1,22 @@
-{% extends "::base.html.twig"%}
-{% block title %} {{parent()}} | Choix new{% endblock %}
-{% block titre %} Choix new{% endblock %}
+{% extends "PersonnageBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} CaractPersoHistoire creation {% endblock %}
+
 {% block body %}
-    {{parent()}}
-    <section>
-    </section>
+<form action="{{ path('caractpersohistoire_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('caractpersohistoire') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
 {% endblock %}

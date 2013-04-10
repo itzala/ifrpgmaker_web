@@ -27,13 +27,20 @@ class PartieCorps
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
-
+    
+    
     /**
-     * @var integer
      *
-     * @ORM\Column(name="taille", type="integer")
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Taille")
      */
     private $taille;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu")
+     */
+    private $systeme_jeu;
 
 
     /**
@@ -72,10 +79,10 @@ class PartieCorps
     /**
      * Set taille
      *
-     * @param integer $taille
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\Taille $taille
      * @return PartieCorps
      */
-    public function setTaille($taille)
+    public function setTaille(\IfRPGMaker\SystemeJeuBundle\Entity\Taille $taille = null)
     {
         $this->taille = $taille;
     
@@ -85,10 +92,33 @@ class PartieCorps
     /**
      * Get taille
      *
-     * @return integer 
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\Taille 
      */
     public function getTaille()
     {
         return $this->taille;
+    }
+
+    /**
+     * Set systeme_jeu
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu
+     * @return PartieCorps
+     */
+    public function setSystemeJeu(\IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu = null)
+    {
+        $this->systeme_jeu = $systemeJeu;
+    
+        return $this;
+    }
+
+    /**
+     * Get systeme_jeu
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu 
+     */
+    public function getSystemeJeu()
+    {
+        return $this->systeme_jeu;
     }
 }

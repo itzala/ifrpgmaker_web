@@ -14,31 +14,18 @@ use IfRPGMaker\SystemeJeuBundle\Form\SystemeJeuType;
  */
 class SystemeJeuController extends Controller
 {
-    
-    public function getRepository() {
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('SystemeJeuBundle:SystemeJeu');
-    }
-    
-    
-    public function setFlash($titre, $message) {
-        $this->get('session')->setFlash(
-                $titre,
-                $message
-                );
-    }
-     
     /**
      * Lists all SystemeJeu entities.
      *
      */
     public function indexAction()
     {
-        $res = $this->getRepository()->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SystemeJeuBundle:SystemeJeu')->findAll();
 
         return $this->render('SystemeJeuBundle:SystemeJeu:index.html.twig', array(
-            'entities' => $res['entities'],
-            'sql' => $res['sql'],
+            'entities' => $entities,
         ));
     }
 
@@ -48,8 +35,10 @@ class SystemeJeuController extends Controller
      */
     public function showAction($id)
     {
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];    
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SystemeJeuBundle:SystemeJeu')->find($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find SystemeJeu entity.');
         }
@@ -57,10 +46,8 @@ class SystemeJeuController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('SystemeJeuBundle:SystemeJeu:show.html.twig', array(
-            'entity'      => $entity,    
-            'sql'         => $res['sql'],
-            'delete_form' => $deleteForm->createView(),
-            ));
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -89,14 +76,11 @@ class SystemeJeuController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $rep = $this->getRepository();
-            $res = $rep->insert($entity);
-            $sql = $res['sql'];
-            
-            $message = 'La requête exécutée est la suivante : <br/>'.$sql;
-            $this->setFlash("sql", $message);
-           
-            return $this->redirect($this->generateUrl('systeme_jeu_show', array('id' => $res['id'])));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('systemejeu_show', array('id' => $entity->getId())));
         }
 
         return $this->render('SystemeJeuBundle:SystemeJeu:new.html.twig', array(
@@ -111,8 +95,9 @@ class SystemeJeuController extends Controller
      */
     public function editAction($id)
     {
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SystemeJeuBundle:SystemeJeu')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find SystemeJeu entity.');
@@ -123,7 +108,6 @@ class SystemeJeuController extends Controller
 
         return $this->render('SystemeJeuBundle:SystemeJeu:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -135,9 +119,9 @@ class SystemeJeuController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $rep = $this->getRepository();
-        $res = $rep->find($id);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SystemeJeuBundle:SystemeJeu')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find SystemeJeu entity.');
@@ -148,16 +132,14 @@ class SystemeJeuController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $sql = $rep->update($entity);
-            
-            $this->setFlash("sql", $sql);
+            $em->persist($entity);
+            $em->flush();
 
-            return $this->redirect($this->generateUrl('systeme_jeu_edit', $entity->getArrayIds()));
+            return $this->redirect($this->generateUrl('systemejeu_edit', array('id' => $id)));
         }
 
         return $this->render('SystemeJeuBundle:SystemeJeu:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -174,19 +156,17 @@ class SystemeJeuController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $res = $em->getRepository('SystemeJeuBundle:SystemeJeu')->find($id);
-            $entity = $res["entity"];
+            $entity = $em->getRepository('SystemeJeuBundle:SystemeJeu')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find SystemeJeu entity.');
             }
 
-            $sql = $this->getRepository()->delete($entity);
-            
-             $this->setFlash("sql", $sql);
+            $em->remove($entity);
+            $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('systeme_jeu'));
+        return $this->redirect($this->generateUrl('systemejeu'));
     }
 
     private function createDeleteForm($id)

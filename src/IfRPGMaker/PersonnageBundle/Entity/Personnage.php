@@ -13,50 +13,66 @@ use Doctrine\ORM\Mapping as ORM;
 class Personnage
 {
     /**
-     * @var string
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
-
+    
+    
     /**
-     * @var int
      *
-     * @ORM\Column(name="taille", type="integer")
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Race")
      */
-    private $taille;
-        
-    
-    /**
-     * 
-     * @ORM\Column(name="metier", type="string", length=40)
-     */
-    
-    private $metier;
-    
-    /**
-     * 
-     * @ORM\Column(name="classe", type="string", length=40)
-     */
-    
-    private $classe;
-    
-    
-    /**
-     * 
-     * @ORM\Column(name="race", type="string", length=40)
-     */
-    
     private $race;
     
     
     /**
-     * 
-     * @ORM\Column(name="pseudo", type="string", length=40)
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Metier")
      */
+    private $metier;
     
-    private $pseudo;
     
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Classe")
+     */
+    private $classe;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
+     */
+    private $joueur;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Taille")
+     */
+    private $taille;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set nom
@@ -82,81 +98,12 @@ class Personnage
     }
 
     /**
-     * Set taille
-     *
-     * @param int $taille
-     * @return Personnage
-     */
-    public function setTaille($taille)
-    {
-        $this->taille = $taille;
-    
-        return $this;
-    }
-
-    /**
-     * Get taille
-     *
-     * @return int 
-     */
-    public function getTaille()
-    {
-        return $this->taille;
-    }
-
-    /**
-     * Set metier
-     *
-     * @param string $metier
-     * @return Personnage
-     */
-    public function setMetier($metier)
-    {
-        $this->metier = $metier;
-    
-        return $this;
-    }
-
-    /**
-     * Get metier
-     *
-     * @return string 
-     */
-    public function getMetier()
-    {
-        return $this->metier;
-    }
-
-    /**
-     * Set classe
-     *
-     * @param string $classe
-     * @return Personnage
-     */
-    public function setClasse($classe)
-    {
-        $this->classe = $classe;
-    
-        return $this;
-    }
-
-    /**
-     * Get classe
-     *
-     * @return string 
-     */
-    public function getClasse()
-    {
-        return $this->classe;
-    }
-
-    /**
      * Set race
      *
-     * @param string $race
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\Race $race
      * @return Personnage
      */
-    public function setRace($race)
+    public function setRace(\IfRPGMaker\SystemeJeuBundle\Entity\Race $race = null)
     {
         $this->race = $race;
     
@@ -166,7 +113,7 @@ class Personnage
     /**
      * Get race
      *
-     * @return string 
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\Race 
      */
     public function getRace()
     {
@@ -174,25 +121,94 @@ class Personnage
     }
 
     /**
-     * Set pseudo
+     * Set metier
      *
-     * @param string $pseudo
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\Metier $metier
      * @return Personnage
      */
-    public function setPseudo($pseudo)
+    public function setMetier(\IfRPGMaker\SystemeJeuBundle\Entity\Metier $metier = null)
     {
-        $this->pseudo = $pseudo;
+        $this->metier = $metier;
     
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get metier
      *
-     * @return string 
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\Metier 
      */
-    public function getPseudo()
+    public function getMetier()
     {
-        return $this->pseudo;
+        return $this->metier;
+    }
+
+    /**
+     * Set classe
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\Classe $classe
+     * @return Personnage
+     */
+    public function setClasse(\IfRPGMaker\SystemeJeuBundle\Entity\Classe $classe = null)
+    {
+        $this->classe = $classe;
+    
+        return $this;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\Classe 
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * Set joueur
+     *
+     * @param \IfRPGMaker\UserBundle\Entity\Joueur $joueur
+     * @return Personnage
+     */
+    public function setJoueur(\IfRPGMaker\UserBundle\Entity\Joueur $joueur = null)
+    {
+        $this->joueur = $joueur;
+    
+        return $this;
+    }
+
+    /**
+     * Get joueur
+     *
+     * @return \IfRPGMaker\UserBundle\Entity\Joueur 
+     */
+    public function getJoueur()
+    {
+        return $this->joueur;
+    }
+
+    /**
+     * Set taille
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\Taille $taille
+     * @return Personnage
+     */
+    public function setTaille(\IfRPGMaker\SystemeJeuBundle\Entity\Taille $taille = null)
+    {
+        $this->taille = $taille;
+    
+        return $this;
+    }
+
+    /**
+     * Get taille
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\Taille 
+     */
+    public function getTaille()
+    {
+        return $this->taille;
     }
 }

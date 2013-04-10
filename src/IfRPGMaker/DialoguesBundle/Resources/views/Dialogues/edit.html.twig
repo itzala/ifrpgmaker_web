@@ -1,29 +1,28 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Choix Editer {% endblock %}
+{% extends "DialoguesBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Dialogues edit {% endblock %}
+
 {% block body %}
-    {{ parent() }}
-    <section>
+<form action="{{ path('dialogues_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
 
-    <form action="{{ path('choix_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Editer</button>
-        </p>
-    </form>
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('choix') }}">
-                Retour
-            </a>
-        </li>
-        <li>
-            <form action="{{ path('choix_delete', { 'id': entity.id }) }}" method="post">
-                {{ form_widget(delete_form) }}
-                <button type="submit">Supprimer</button>
-            </form>
-        </li>
-    </ul>
-    </section>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('dialogues') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('dialogues_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
 {% endblock %}

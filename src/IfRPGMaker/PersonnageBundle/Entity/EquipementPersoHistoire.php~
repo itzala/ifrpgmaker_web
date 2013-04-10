@@ -1,0 +1,48 @@
+<?php
+
+namespace IfRPGMaker\PersonnageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EquipementPersoHistoire
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="IfRPGMaker\PersonnageBundle\Entity\EquipementPersoHistoireRepository")
+ */
+class EquipementPersoHistoire
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Objet")
+     */
+    private $objet;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Personnage")
+     */
+    private $perso;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

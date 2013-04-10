@@ -3,7 +3,6 @@
 namespace IfRPGMaker\SystemeJeuBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\DBAL\DriverManager;
 
 /**
  * SystemeJeuRepository
@@ -13,78 +12,4 @@ use Doctrine\DBAL\DriverManager;
  */
 class SystemeJeuRepository extends EntityRepository
 {
-    public function getConnection()
-    {
-        return $this->_em->getConnection();
-    }
-    
-    public function find($id)
-    {
-        $sql = "SELECT * FROM SystemeJeu WHERE id=".$id;
-        
-        $query = $this->createQueryBuilder("s")
-                ->where("s.id = :id")
-                ->setParameter("id", $id)
-                ->getQuery();
-                
-       $res = $query->getResult();
-        if (empty($res))
-            $res = NULL;
-        else
-            $res = $res[0];
-        return array("sql" => $sql, "entity"=> $res);
-    }
-    
-    public function findByCreateur($pseudo)
-    {
-        $sql = "SELECT * FROM SystemeJeu WHERE createur=" .$pseudo;
-        
-        $query = $this->createQueryBuilder("s")
-                ->where("s.pseudo = :pseudo")
-                ->setParameter("pseudo", $pseudo)
-                ->getQuery();
-        
-        $res = $query->getResult();
-        return array("sql" => $sql, "entities"=> $res);
-    }
-    
-    public function findAll()
-    {
-        $sql = "SELECT * FROM SystemeJeu";
-        
-        $query = $this->createQueryBuilder("s")->getQuery();
-        $res = $query->getResult();
-        
-        return array("sql" => $sql, "entities" => $res);
-    }
-    
-    public function insert($entity) {
-        $sql = "INSERT INTO SystemeJeu (createur) VALUES ('".$entity->getCreateur()."')";
-        $conn = $this->getConnection();
-        
-        $conn->insert('SystemeJeu', array('createur' => $entity->getCreateur()));
-        
-        return array('sql' => $sql, 'id' => $conn->lastInsertId());
-    }
-    
-    public function delete($entity) {
-        $sql = "DELETE FROM SystemeJeu WHERE id=".$entity->getId();
-        
-        $conn = $this->getConnection();
-        $conn->delete('SystemeJeu', array('id' => $entity->getId()));
-        
-        return $sql;
-    }
-    
-    public function update($entity) {
-        $sql = "UPDATE SystemeJeu SET createur='".$entity->getCreateur()."' WHERE id=".$entity->getId();
-        
-        $conn = $this->getConnection();        
-        $conn->update('SystemeJeu', 
-                array('Createur' => $entity->getCreateur()), 
-                array('id' => $entity->getId())
-                );
-        
-        return $sql;
-    }
 }

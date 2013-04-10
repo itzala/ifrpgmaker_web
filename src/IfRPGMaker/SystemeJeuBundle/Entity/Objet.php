@@ -31,16 +31,28 @@ class Objet
     /**
      * @var integer
      *
-     * @ORM\Column(name="poids", type="integer")
+     * @ORM\Column(name="poids", type="smallint")
      */
     private $poids;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="encombrement", type="integer")
+     * @ORM\Column(name="encombrement", type="smallint")
      */
     private $encombrement;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\TypeObjet")
+     */
+    private $type_objet;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu")
+     */
+    private $systeme_jeu;
 
 
     /**
@@ -120,5 +132,51 @@ class Objet
     public function getEncombrement()
     {
         return $this->encombrement;
+    }
+
+    /**
+     * Set type_objet
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\TypeObjet $typeObjet
+     * @return Objet
+     */
+    public function setTypeObjet(\IfRPGMaker\SystemeJeuBundle\Entity\TypeObjet $typeObjet = null)
+    {
+        $this->type_objet = $typeObjet;
+    
+        return $this;
+    }
+
+    /**
+     * Get type_objet
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\TypeObjet 
+     */
+    public function getTypeObjet()
+    {
+        return $this->type_objet;
+    }
+
+    /**
+     * Set systeme_jeu
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu
+     * @return Objet
+     */
+    public function setSystemeJeu(\IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu = null)
+    {
+        $this->systeme_jeu = $systemeJeu;
+    
+        return $this;
+    }
+
+    /**
+     * Get systeme_jeu
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu 
+     */
+    public function getSystemeJeu()
+    {
+        return $this->systeme_jeu;
     }
 }

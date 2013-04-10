@@ -1,0 +1,30 @@
+partiecorps:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:index" }
+
+partiecorps_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:show" }
+
+partiecorps_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:new" }
+
+partiecorps_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:create" }
+    requirements: { _method: post }
+
+partiecorps_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:edit" }
+
+partiecorps_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:update" }
+    requirements: { _method: post }
+
+partiecorps_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:PartieCorps:delete" }
+    requirements: { _method: post }

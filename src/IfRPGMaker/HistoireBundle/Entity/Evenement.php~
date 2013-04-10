@@ -13,19 +13,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Evenement
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    
+    /**
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Intro")
-     * @ORM\JoinColumn(nullable=true, referencedColumnName="id")
-     * 
      */
     private $intro;
     
     
     /**
-     * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Description")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
-     * 
      */
     private $description;
 
@@ -38,51 +44,5 @@ class Evenement
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set intro
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Intro $intro
-     * @return Evenement
-     */
-    public function setIntro(\IfRPGMaker\HistoireBundle\Entity\Intro $intro = null)
-    {
-        $this->intro = $intro;
-    
-        return $this;
-    }
-
-    /**
-     * Get intro
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Intro 
-     */
-    public function getIntro()
-    {
-        return $this->intro;
-    }
-
-    /**
-     * Set description
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Description $description
-     * @return Evenement
-     */
-    public function setDescription(\IfRPGMaker\HistoireBundle\Entity\Description $description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Description 
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 }

@@ -5,7 +5,6 @@
 {% block titre %} Accueil {% endblock %}
 
 {% block body %}     
-     {{ parent() }}    
     
     <section>
         <p>
@@ -14,3 +13,11 @@
         </p>
     </section>
 {% endblock %}
+
+{% block nav_partie %}{% endblock %}
+
+
+
+{% block stylesheets %}{{parent()}}{% endblock %}
+
+{% block javascripts %}{{parent()}}{% endblock %}

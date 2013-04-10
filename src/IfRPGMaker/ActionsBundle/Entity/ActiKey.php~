@@ -1,0 +1,53 @@
+<?php
+
+namespace IfRPGMaker\ActionsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ActiKey
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="IfRPGMaker\ActionsBundle\Entity\ActiKeyRepository")
+ */
+class ActiKey
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    
+    /**
+     * 
+     * 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Keywords")
+     */
+    private $keyword;
+    
+    
+    /**
+     * 
+     * 
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\ActionsBundle\Entity\Actions")
+     */
+    private $action;
+    
+    
+    
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

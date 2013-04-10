@@ -14,31 +14,18 @@ use IfRPGMaker\DialoguesBundle\Form\DialoguesType;
  */
 class DialoguesController extends Controller
 {
-    
-    public function getRepository() {
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('DialoguesBundle:Dialogues');
-    }
-    
-    
-    public function setFlash($titre, $message) {
-        $this->get('session')->setFlash(
-                $titre,
-                $message
-                );
-    }
-    
     /**
      * Lists all Dialogues entities.
      *
      */
     public function indexAction()
     {
-        $res = $this->getRepository()->myfindAll();
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('DialoguesBundle:Dialogues')->findAll();
 
         return $this->render('DialoguesBundle:Dialogues:index.html.twig', array(
-            'entities' => $res['entities'],
-            'sql' => $res['sql'],
+            'entities' => $entities,
         ));
     }
 
@@ -46,10 +33,12 @@ class DialoguesController extends Controller
      * Finds and displays a Dialogues entity.
      *
      */
-    public function showAction($auteur, $perso, $description)
+    public function showAction($id)
     {
-        $res = $this->getRepository()->myfind($auteur, $perso, $description);
-        $entity = $res["entity"];    
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DialoguesBundle:Dialogues')->find($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Dialogues entity.');
         }
@@ -57,10 +46,8 @@ class DialoguesController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DialoguesBundle:Dialogues:show.html.twig', array(
-            'entity'      => $entity,    
-            'sql'         => $res['sql'],
-            'delete_form' => $deleteForm->createView(),
-            ));
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -89,16 +76,11 @@ class DialoguesController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $rep = $this->getRepository();
-            $res = $rep->insert($entity);
-            $sql = $res['sql'];
-            
-            $message = 'La requête exécutée est la suivante : <br/>'.$sql;
-            $this->setFlash("sql", $message);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
 
-            
-            
-            return $this->redirect($this->generateUrl('Dialogues_show', array('id' => $res['id'])));
+            return $this->redirect($this->generateUrl('dialogues_show', array('id' => $entity->getId())));
         }
 
         return $this->render('DialoguesBundle:Dialogues:new.html.twig', array(
@@ -111,21 +93,21 @@ class DialoguesController extends Controller
      * Displays a form to edit an existing Dialogues entity.
      *
      */
-    public function editAction($auteur, $perso, $description)
+    public function editAction($id)
     {
-        $res = $this->getRepository()->myfind($auteur, $perso, $description);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DialoguesBundle:Dialogues')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Dialogues entity.');
         }
 
         $editForm = $this->createForm(new DialoguesType(), $entity);
-        $deleteForm = $this->createDeleteForm($auteur, $perso, $description);
+        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('DialoguesBundle:Dialogues:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -135,11 +117,11 @@ class DialoguesController extends Controller
      * Edits an existing Dialogues entity.
      *
      */
-    public function updateAction(Request $request, $auteur, $perso, $description)
+    public function updateAction(Request $request, $id)
     {
-        $rep = $this->getRepository();
-        $res = $rep->myfind($auteur, $perso, $description);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DialoguesBundle:Dialogues')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Dialogues entity.');
@@ -150,16 +132,14 @@ class DialoguesController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $sql = $rep->update($entity);
-            
-            $this->setFlash("sql", $sql);
+            $em->persist($entity);
+            $em->flush();
 
-            return $this->redirect($this->generateUrl('Dialogues_edit', $entity->getArrayIds()));
+            return $this->redirect($this->generateUrl('dialogues_edit', array('id' => $id)));
         }
 
         return $this->render('DialoguesBundle:Dialogues:edit.html.twig', array(
             'entity'      => $entity,
-            'sql'         => $res['sql'],
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -169,31 +149,29 @@ class DialoguesController extends Controller
      * Deletes a Dialogues entity.
      *
      */
-    public function deleteAction(Request $request, $auteur, $perso, $description)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $res = $em->getRepository('DialoguesBundle:Dialogues')->myfind($auteur, $perso, $description);
-            $entity = $res["entity"];
+            $entity = $em->getRepository('DialoguesBundle:Dialogues')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Dialogues entity.');
             }
 
-            $sql = $this->getRepository()->delete($entity);
-            
-             $this->setFlash("sql", $sql);
+            $em->remove($entity);
+            $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('Dialogues'));
+        return $this->redirect($this->generateUrl('dialogues'));
     }
 
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $auteur, $perso, $description))
+        return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()
         ;

@@ -5,109 +5,108 @@ namespace IfRPGMaker\PersonnageBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use IfRPGMaker\PersonnageBundle\Entity\Personnage;
-use IfRPGMaker\PersonnageBundle\Form\PersonnageType;
+use IfRPGMaker\PersonnageBundle\Entity\CaractPersoHistoire;
+use IfRPGMaker\PersonnageBundle\Form\CaractPersoHistoireType;
 
 /**
- * Personnage controller.
+ * CaractPersoHistoire controller.
  *
  */
 class CaractPersoHistoireController extends Controller
 {
-    
-    public function getRepository()
-    {
-        return $this->getDoctrine()->getManager()->getRepository("PersonnageBundle:CaractPersoHistoire");        
-    }
-    
-    
     /**
-     * Lists all Personnage entities.
+     * Lists all CaractPersoHistoire entities.
      *
      */
     public function indexAction()
     {
-        $entities = $this->getRepository()->findAll();        
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('PersonnageBundle:Personnage:index.html.twig', array(
+        $entities = $em->getRepository('PersonnageBundle:CaractPersoHistoire')->findAll();
+
+        return $this->render('PersonnageBundle:CaractPersoHistoire:index.html.twig', array(
             'entities' => $entities,
         ));
     }
 
     /**
-     * Finds and displays a Personnage entity.
+     * Finds and displays a CaractPersoHistoire entity.
      *
      */
     public function showAction($id)
-    {        
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];        
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('PersonnageBundle:CaractPersoHistoire')->find($id);
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Personnage entity.');
+            throw $this->createNotFoundException('Unable to find CaractPersoHistoire entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PersonnageBundle:Personnage:show.html.twig', array(
-            'entity'      => $entity,            
+        return $this->render('PersonnageBundle:CaractPersoHistoire:show.html.twig', array(
+            'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new Personnage entity.
+     * Displays a form to create a new CaractPersoHistoire entity.
      *
      */
     public function newAction()
     {
-        $entity = new Personnage();
-        $form   = $this->createForm(new PersonnageType(), $entity);
+        $entity = new CaractPersoHistoire();
+        $form   = $this->createForm(new CaractPersoHistoireType(), $entity);
 
-        return $this->render('PersonnageBundle:Personnage:new.html.twig', array(
+        return $this->render('PersonnageBundle:CaractPersoHistoire:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a new Personnage entity.
+     * Creates a new CaractPersoHistoire entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity  = new Personnage();
-        $form = $this->createForm(new PersonnageType(), $entity);
+        $entity  = new CaractPersoHistoire();
+        $form = $this->createForm(new CaractPersoHistoireType(), $entity);
         $form->bind($request);
-        
-        if ($form->isValid()) {
-            $repository = $em->getRepository("PersonnageBundle:Personnage");
-            $repository->insert($entity);            
 
-            return $this->redirect($this->generateUrl('personnage_show', array('id' => $entity->getId())));
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('caractpersohistoire_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('PersonnageBundle:Personnage:new.html.twig', array(
+        return $this->render('PersonnageBundle:CaractPersoHistoire:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Personnage entity.
+     * Displays a form to edit an existing CaractPersoHistoire entity.
      *
      */
     public function editAction($id)
     {
-        $res = $this->getRepository()->find($id);
-        $entity = $res["entity"];
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('PersonnageBundle:CaractPersoHistoire')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Personnage entity.');
+            throw $this->createNotFoundException('Unable to find CaractPersoHistoire entity.');
         }
 
-        $editForm = $this->createForm(new PersonnageType(), $entity);
+        $editForm = $this->createForm(new CaractPersoHistoireType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PersonnageBundle:Personnage:edit.html.twig', array(
+        return $this->render('PersonnageBundle:CaractPersoHistoire:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -115,32 +114,31 @@ class CaractPersoHistoireController extends Controller
     }
 
     /**
-     * Edits an existing Personnage entity.
+     * Edits an existing CaractPersoHistoire entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $res = $em->getRepository('PersonnageBundle:Personnage')->find($id);
-        $entity = $res["entity"];
+        $entity = $em->getRepository('PersonnageBundle:CaractPersoHistoire')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Personnage entity.');
+            throw $this->createNotFoundException('Unable to find CaractPersoHistoire entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PersonnageType(), $entity);
+        $editForm = $this->createForm(new CaractPersoHistoireType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $repository = $em->getRepository("PersonnageBundle:Personnage");
-            $repository->insert($entity);     
+            $em->persist($entity);
+            $em->flush();
 
-            return $this->redirect($this->generateUrl('personnage_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('caractpersohistoire_edit', array('id' => $id)));
         }
 
-        return $this->render('PersonnageBundle:Personnage:edit.html.twig', array(
+        return $this->render('PersonnageBundle:CaractPersoHistoire:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -148,7 +146,7 @@ class CaractPersoHistoireController extends Controller
     }
 
     /**
-     * Deletes a Personnage entity.
+     * Deletes a CaractPersoHistoire entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -157,17 +155,18 @@ class CaractPersoHistoireController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $repository = $this->getRepository();
-            $res = $repository->find($id);            
-            $entity = $res["entity"];
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('PersonnageBundle:CaractPersoHistoire')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Personnage entity.');
+                throw $this->createNotFoundException('Unable to find CaractPersoHistoire entity.');
             }
-            $repository->delete($entity);                   
+
+            $em->remove($entity);
+            $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('personnage'));
+        return $this->redirect($this->generateUrl('caractpersohistoire'));
     }
 
     private function createDeleteForm($id)

@@ -30,19 +30,6 @@ class Description
 
 
     /**
-     * Set id
-     *
-     * @return Description 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        
-        return $this;
-    }
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -74,18 +61,4 @@ class Description
     {
         return $this->contenu;
     }
-    
-    public function __toString() {
-        return $this->contenu;
-    }
-    
-    public function getArrayIds()
-    {
-        return array('id' => $this->id);
-    }
-    
-//    public function __construct($id, $contenu) {
-//        $this->id = $id;
-//        $this->contenu = $contenu;
-//    }
 }

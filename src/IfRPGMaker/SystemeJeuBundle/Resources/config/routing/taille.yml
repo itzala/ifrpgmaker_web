@@ -1,0 +1,30 @@
+taille:
+    pattern:  /
+    defaults: { _controller: "SystemeJeuBundle:Taille:index" }
+
+taille_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SystemeJeuBundle:Taille:show" }
+
+taille_new:
+    pattern:  /new
+    defaults: { _controller: "SystemeJeuBundle:Taille:new" }
+
+taille_create:
+    pattern:  /create
+    defaults: { _controller: "SystemeJeuBundle:Taille:create" }
+    requirements: { _method: post }
+
+taille_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SystemeJeuBundle:Taille:edit" }
+
+taille_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SystemeJeuBundle:Taille:update" }
+    requirements: { _method: post }
+
+taille_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SystemeJeuBundle:Taille:delete" }
+    requirements: { _method: post }

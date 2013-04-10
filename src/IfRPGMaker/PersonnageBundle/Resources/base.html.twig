@@ -1,0 +1,13 @@
+{% extends "SiteBundle:Site:index.html.twig" %}
+
+
+
+{% block nav_partie %}
+<aside>
+    <ul
+        <li><a href="{{path("personnage")}}">Personnage</a></li>
+        <li><a href="{{path("caractpersohistoire")}}">CaractPersoHistoire</a></li>
+        <li><a href="{{path("equipementpersohistoire")}}">EquipementPersoHistoire</a></li>
+    </ul>
+</aside>
+{% endblock %}

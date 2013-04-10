@@ -1,0 +1,16 @@
+{% extends "SiteBundle:Site:index.html.twig" %}
+
+
+
+{% block nav_partie %}
+<aside>
+    <ul>
+        <li><a href="{{path("intro")}}">Intro</a></li>
+        <li><a href="{{path("description")}}">Description</a></li>
+        <li><a href="{{path("evenement")}}">Évènement</a></li>
+        <li><a href="{{path("choix")}}">Choix</a></li>
+        <li><a href="{{path("scenario")}}">Scénario</a></li>
+        <li><a href="{{path("histoire")}}">Histoire</a></li>
+    </ul>
+</aside>
+{% endblock %}

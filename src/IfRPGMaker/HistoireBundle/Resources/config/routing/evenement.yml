@@ -3,7 +3,7 @@ evenement:
     defaults: { _controller: "HistoireBundle:Evenement:index" }
 
 evenement_show:
-    pattern:  /{intro}/{description}/show
+    pattern:  /{id}/show
     defaults: { _controller: "HistoireBundle:Evenement:show" }
 
 evenement_new:
@@ -16,15 +16,15 @@ evenement_create:
     requirements: { _method: post }
 
 evenement_edit:
-    pattern:  /{intro}/{description}/edit
+    pattern:  /{id}/edit
     defaults: { _controller: "HistoireBundle:Evenement:edit" }
 
 evenement_update:
-    pattern:  /{intro}/{description}/update
+    pattern:  /{id}/update
     defaults: { _controller: "HistoireBundle:Evenement:update" }
     requirements: { _method: post }
 
 evenement_delete:
-    pattern:  /{intro}/{description}/delete
+    pattern:  /{id}/delete
     defaults: { _controller: "HistoireBundle:Evenement:delete" }
     requirements: { _method: post }

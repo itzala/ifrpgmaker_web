@@ -1,22 +1,16 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Joueur creation {% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-        <form action="{{ path('joueur_create') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <p>
-                <button type="submit">Créer</button>
-            </p>
-        </form>
+<h1>Joueur creation</h1>
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('joueur') }}">
-                    Retour
-                </a>
-            </li>
-        </ul>
-    </section>
-{% endblock %}
+<form action="{{ path('joueur_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('joueur') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

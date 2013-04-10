@@ -1,0 +1,30 @@
+equipementpersohistoire:
+    pattern:  /
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:index" }
+
+equipementpersohistoire_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:show" }
+
+equipementpersohistoire_new:
+    pattern:  /new
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:new" }
+
+equipementpersohistoire_create:
+    pattern:  /create
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:create" }
+    requirements: { _method: post }
+
+equipementpersohistoire_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:edit" }
+
+equipementpersohistoire_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:update" }
+    requirements: { _method: post }
+
+equipementpersohistoire_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PersonnageBundle:EquipementPersoHistoire:delete" }
+    requirements: { _method: post }

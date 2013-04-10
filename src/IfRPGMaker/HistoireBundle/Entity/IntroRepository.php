@@ -3,7 +3,6 @@
 namespace IfRPGMaker\HistoireBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\DBAL\DriverManager;
 
 /**
  * IntroRepository
@@ -13,78 +12,4 @@ use Doctrine\DBAL\DriverManager;
  */
 class IntroRepository extends EntityRepository
 {
-    public function getConnection()
-    {
-        return $this->_em->getConnection();
-    }
-    
-    public function find($id)
-    {
-        $sql = "SELECT * FROM Intro WHERE id=".$id;
-        
-        $query = $this->createQueryBuilder("i")
-                ->where("i.id = :id")
-                ->setParameter("id", $id)
-                ->getQuery();
-                
-       $res = $query->getResult();
-        if (empty($res))
-            $res = NULL;
-        else
-            $res = $res[0];
-        return array("sql" => $sql, "entity"=> $res);
-    }
-    
-    public function findByContenu($contenu)
-    {
-        $sql = "SELECT * FROM Intro WHERE contenu=" .$contenu;
-        
-        $query = $this->createQueryBuilder("i")
-                ->where("i.contenu = :contenu")
-                ->setParameter("contenu", $contenu)
-                ->getQuery();
-        
-        $res = $query->getResult();
-        return array("sql" => $sql, "entities"=> $res);
-    }
-    
-    public function findAll()
-    {
-        $sql = "SELECT * FROM Intro";
-        
-        $query = $this->createQueryBuilder("i")->getQuery();
-        $res = $query->getResult();
-        
-        return array("sql" => $sql, "entities" => $res);
-    }
-    
-    public function insert($entity) {
-        $sql = "INSERT INTO Intro (contenu) VALUES ('".$entity->getContenu()."')";
-        $conn = $this->getConnection();
-        
-        $conn->insert('Intro', array('contenu' => $entity->getContenu()));
-        
-        return array('sql' => $sql, 'id' => $conn->lastInsertId());
-    }
-    
-    public function delete($entity) {
-        $sql = "DELETE FROM Intro WHERE id=".$entity->getId();
-        
-        $conn = $this->getConnection();
-        $conn->delete('Intro', array('id' => $entity->getId()));
-        
-        return $sql;
-    }
-    
-    public function update($entity) {
-        $sql = "UPDATE Intro SET contenu='".$entity->getContenu()."' WHERE id=".$entity->getId();
-        
-        $conn = $this->getConnection();
-        $conn->update('Intro', 
-                array('contenu' => $entity->getContenu()), 
-                array('id' => $entity->getId())
-                );
-        
-        return $sql;
-    }
 }

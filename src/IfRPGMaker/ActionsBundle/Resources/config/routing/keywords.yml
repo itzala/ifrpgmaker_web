@@ -1,0 +1,30 @@
+keywords:
+    pattern:  /
+    defaults: { _controller: "ActionsBundle:Keywords:index" }
+
+keywords_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ActionsBundle:Keywords:show" }
+
+keywords_new:
+    pattern:  /new
+    defaults: { _controller: "ActionsBundle:Keywords:new" }
+
+keywords_create:
+    pattern:  /create
+    defaults: { _controller: "ActionsBundle:Keywords:create" }
+    requirements: { _method: post }
+
+keywords_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ActionsBundle:Keywords:edit" }
+
+keywords_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ActionsBundle:Keywords:update" }
+    requirements: { _method: post }
+
+keywords_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ActionsBundle:Keywords:delete" }
+    requirements: { _method: post }

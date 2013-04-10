@@ -1,22 +1,22 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Description creation {% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-        <form action="{{ path('description_create') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <p>
-                <button type="submit">Créer</button>
-            </p>
-        </form>
+{% extends "HistoireBundle::base.html.twig" %}
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('description') }}">
-                    Retour
-                </a>
-            </li>
-        </ul>
-    </section>
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Description creation {% endblock %}
+
+{% block body %}
+<form action="{{ path('description_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('description') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
 {% endblock %}

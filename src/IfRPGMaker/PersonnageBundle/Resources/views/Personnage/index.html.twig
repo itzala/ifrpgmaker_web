@@ -1,49 +1,43 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Personnage list {% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-         <ul>
-            <li>
-                <a href="{{ path('intro_new') }}">
-                    Ajouter
-                </a>
-            </li>
-        </ul>
+{% extends "PersonnageBundle::base.html.twig" %}
 
-        <table class="records_list">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Contenu</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('intro_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.contenu | slice(0, 30) }}
-                        {%if entity.contenu | length > 30 %}
-                        ...
-                        {% endif %}
-                    </td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('intro_show', { 'id': entity.id }) }}">Détails</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('intro_edit', { 'id': entity.id }) }}">Editer</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% else %}
-                <tr><td colspan="3">Aucun personnage trouv&eacute;</td></tr>
-            {% endfor %}
-            </tbody>
-        </table>   
-    </section>
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Personnage list {% endblock %}
+
+{% block body %}
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('personnage_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nom }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('personnage_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('personnage_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('personnage_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
 {% endblock %}

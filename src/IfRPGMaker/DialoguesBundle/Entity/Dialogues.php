@@ -5,97 +5,59 @@ namespace IfRPGMaker\DialoguesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Choix
+ * Dialogues
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="IfRPGMaker\DialoguesBundle\Entity\ChoixRepository")
+ * @ORM\Entity(repositoryClass="IfRPGMaker\DialoguesBundle\Entity\DialoguesRepository")
  */
 class Dialogues
 {
     /**
-     *@ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
-     *@ORM\JoinColumn(nullable=false)
+     * @var integer
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $auteur;
+    private $id;
 
     /**
      * @var string
-     * @ORM\Column(name="description", type="string", length=40)
-     * @ORM\JoinColumn(nullable=false)
+     *
+     * @ORM\Column(name="dialogues", type="text")
+     */
+    private $dialogues;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
+     */
+    private $auteur;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Description")
      */
     private $description;
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\PersonnageBundle\Entity\PersonnageController")
-     * @ORM\JoinColumn(nullable=false)
-     * 
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\PersonnageBundle\Entity\Personnage")
      */
     private $perso;
-    
-    
-    // *
-    //  * @ORM\ManyToOne(targetEntity="IfRPGMaker\ContrainteBundle\Entity\ElementContrainte")
-    //  * @ORM\JoinColumn(nullable=false)
-    //  * 
-     
-    // private $contraites;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="dialogues", type="text")
-     * 
-     */
-    private $dialogues;
-    
-    
-    public function __construct() {
-        //TODO savais quoi y mettre exatement.
-    }
-    
-    /**
-     * Get auteur
-     *
-     * @return \IfRPGMaker\UserBundle\Entity\Joueur 
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
+
 
     /**
-     * Get Perso
+     * Get id
      *
-     * @return \IfRPGMaker\PersonnageBundle\Entity\Personnage
+     * @return integer 
      */
-    public function getPerso()
+    public function getId()
     {
-        return $this->perso;
-    }
-    
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Dialogues
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
+        return $this->id;
     }
 
     /**
@@ -120,38 +82,4 @@ class Dialogues
     {
         return $this->dialogues;
     }
-
-
-    /**
-     * Set auteur
-     *
-     * @param \IfRPGMaker\UserBundle\Entity\Joueur $auteur
-     * @return Histoire
-     */
-    public function setAuteur(\IfRPGMaker\UserBundle\Entity\Joueur $auteur)
-    {
-        $this->auteur = $auteur;
-    
-        return $this;
-    }
-
-    /**
-     * Set perso
-     *
-     * @param \IfRPGMaker\PersonnageBundle\Entity\Personnage $perso)
-     * @return Histoire
-     */
-    public function setPerso(\IfRPGMaker\PersonnageBundle\Entity\Personnage $perso)
-    {
-        $this->perso = $perso;
-    
-        return $this;
-    }
-
-
-  
-    public function __toString() {
-        return $this->auteur;
-    }
-    
 }

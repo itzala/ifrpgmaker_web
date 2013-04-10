@@ -13,134 +13,58 @@ use Doctrine\ORM\Mapping as ORM;
 class Histoire
 {
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="creation", type="datetime")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $creation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modification", type="datetime")
-     */
-    private $modification;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Id
      * @ORM\Column(name="titre", type="string", length=40)
      */
     private $titre;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="date_creation", type="datetime")
      */
-    private $description;
+    private $date_creation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_modification", type="datetime")
+     */
+    private $date_modification;
+    
     
     /**
-     * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\UserBundle\Entity\Joueur")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="pseudo")
-     * 
      */
     private $auteur;
     
-    public function __construct($auteur) {
-        $this->auteur = $auteur;
-        $this->titre = " ";
-    }
-
-    /**
-     * Set creation
-     *
-     * @param \DateTime $creation
-     * @return Histoire
-     */
-    public function setCreation($creation)
-    {
-        $this->creation = $creation;
     
-        return $this;
-    }
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Description")
+     */
+    private $description;
+
 
     /**
-     * Get creation
+     * Get id
      *
-     * @return \DateTime 
+     * @return integer 
      */
-    public function getCreation()
+    public function getId()
     {
-        return $this->creation;
-    }
-
-    /**
-     * Set modification
-     *
-     * @param \DateTime $modification
-     * @return Histoire
-     */
-    public function setModification($modification)
-    {
-        $this->modification = $modification;
-    
-        return $this;
-    }
-
-    /**
-     * Get modification
-     *
-     * @return \DateTime 
-     */
-    public function getModification()
-    {
-        return $this->modification;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string 
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Histoire
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return \IfRPGMaker\UserBundle\Entity\Joueur 
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
+        return $this->id;
     }
 
     /**
@@ -157,24 +81,104 @@ class Histoire
     }
 
     /**
+     * Get titre
+     *
+     * @return string 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set date_creation
+     *
+     * @param \DateTime $dateCreation
+     * @return Histoire
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->date_creation = $dateCreation;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_creation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set date_modification
+     *
+     * @param \DateTime $dateModification
+     * @return Histoire
+     */
+    public function setDateModification($dateModification)
+    {
+        $this->date_modification = $dateModification;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_modification
+     *
+     * @return \DateTime 
+     */
+    public function getDateModification()
+    {
+        return $this->date_modification;
+    }
+
+    /**
      * Set auteur
      *
      * @param \IfRPGMaker\UserBundle\Entity\Joueur $auteur
      * @return Histoire
      */
-    public function setAuteur(\IfRPGMaker\UserBundle\Entity\Joueur $auteur)
+    public function setAuteur(\IfRPGMaker\UserBundle\Entity\Joueur $auteur = null)
     {
         $this->auteur = $auteur;
     
         return $this;
     }
-    
-    public function __toString() {
-        return $this->titre;
-    }
-    
-    public function getArrayIds()
+
+    /**
+     * Get auteur
+     *
+     * @return \IfRPGMaker\UserBundle\Entity\Joueur 
+     */
+    public function getAuteur()
     {
-        return array('auteur' => $this->auteur, 'titre' => $this->titre);
+        return $this->auteur;
+    }
+
+    /**
+     * Set description
+     *
+     * @param \IfRPGMaker\HistoireBundle\Entity\Description $description
+     * @return Histoire
+     */
+    public function setDescription(\IfRPGMaker\HistoireBundle\Entity\Description $description = null)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return \IfRPGMaker\HistoireBundle\Entity\Description 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

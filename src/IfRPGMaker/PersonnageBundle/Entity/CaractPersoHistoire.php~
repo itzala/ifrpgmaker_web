@@ -1,0 +1,78 @@
+<?php
+
+namespace IfRPGMaker\PersonnageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CaractPersoHistoire
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="IfRPGMaker\PersonnageBundle\Entity\CaractPersoHistoireRepository")
+ */
+class CaractPersoHistoire
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="valeur", type="integer")
+     */
+    private $valeur;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\Caracteristique")
+     */
+    private $carac;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\PersonnageBundle\Entity\Personnage")
+     */
+    private $perso;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set valeur
+     *
+     * @param integer $valeur
+     * @return CaractPersoHistoire
+     */
+    public function setValeur($valeur)
+    {
+        $this->valeur = $valeur;
+    
+        return $this;
+    }
+
+    /**
+     * Get valeur
+     *
+     * @return integer 
+     */
+    public function getValeur()
+    {
+        return $this->valeur;
+    }
+}

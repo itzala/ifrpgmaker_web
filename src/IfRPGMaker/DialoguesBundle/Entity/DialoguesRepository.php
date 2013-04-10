@@ -3,7 +3,6 @@
 namespace IfRPGMaker\DialoguesBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\DBAL\DriverManager;
 
 /**
  * DialoguesRepository
@@ -13,90 +12,4 @@ use Doctrine\DBAL\DriverManager;
  */
 class DialoguesRepository extends EntityRepository
 {
-    public function getConnection()
-    {
-        return $this->_em->getConnection();
-    }
-    
-    
-    public function findByAuthor($auteur)
-    {
-        $sql = "SELECT * FROM Dialogues WHERE auteur = " .$auteur;
-        
-        $query = $this->createQueryBuilder("i")
-                ->where("i.auteur = :auteur")
-                ->setParameter("auteur", $auteur)
-                ->getQuery();
-        
-        $res = $query->getResult();
-        return array("sql" => $sql, "entities"=> $res);
-    }
-
-        public function findByDescription($description)
-    {
-        $sql = "SELECT * FROM Dialogues WHERE description = " .$description;
-        
-        $query = $this->createQueryBuilder("i")
-                ->where("i.description = :description")
-                ->setParameter("description", $description)
-                ->getQuery();
-        
-        $res = $query->getResult();
-        return array("sql" => $sql, "entities"=> $res);
-    }
-
-
-    public function findByPerso($perso)
-    {
-        $sql = "SELECT * FROM Dialogues WHERE perso = " .$perso;
-        
-        $query = $this->createQueryBuilder("i")
-                ->where("i.perso = :perso")
-                ->setParameter("perso", $perso)
-                ->getQuery();
-        
-        $res = $query->getResult();
-        return array("sql" => $sql, "entities"=> $res);
-    }
-    
-    public function findAll()
-    {
-        $sql = "SELECT * FROM Dialogues";
-        
-        $query = $this->createQueryBuilder("i")->getQuery();
-        $res = $query->getResult();
-        
-        return array("sql" => $sql, "entities" => $res);
-    }
-    
-    public function insert($entity) {
-        $sql = "INSERT INTO Dialogues (contenu) VALUES ('".$entity->getContenu()."')";
-        $conn = $this->getConnection();
-        
-        $conn->insert('Dialogues', array('contenu' => $entity->getContenu()));
-        
-        return array('sql' => $sql, 'id' => $conn->lastInsertId());
-    }
-    
-    public function delete($entity) {
-        $sql = "DELETE FROM Dialogues WHERE auteur=".$entity->getAuteur()" AND WHERE perso=".$entity->getPerso()" AND WHERE description=".$entity->getDescription();
-        
-        $conn = $this->getConnection();
-        $conn->delete('Dialogues', array('auteur' => $entity->getAuteur()), array('perso' => $entity->getPerso())), array('Descriptions' => $entity->getDescriptions())));
-        
-        return $sql;
-    }
-    
-    public function update($entity) {
-        $sql = "UPDATE Dialogues SET contenu='".$entity->getContenu()."' WHERE perso=".$entity->getPerso()" AND WHERE description=".$entity->getDescription();
-        
-        $conn = $this->getConnection();
-        $conn->update('Dialogues', 
-                array('contenu' => $entity->getContenu()), 
-                array('auteur' => $entity->getAuteur()),
-                array('perso' => $entity->getPerso()),
-                );
-        
-        return $sql;
-    }
 }

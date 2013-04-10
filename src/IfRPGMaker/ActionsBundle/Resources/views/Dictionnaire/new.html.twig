@@ -1,0 +1,23 @@
+{% extends "ActionsBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Dictionnaire creation {% endblock %}
+
+{% block body %}
+
+<form action="{{ path('dictionnaire_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('dictionnaire') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

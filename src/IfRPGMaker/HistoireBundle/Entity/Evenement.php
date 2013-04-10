@@ -13,23 +13,38 @@ use Doctrine\ORM\Mapping as ORM;
 class Evenement
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    
+    /**
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Intro")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
-     * @ORM\Column(name="intro", type="integer")
-     * 
      */
     private $intro;
     
     
     /**
-     * @ORM\Id
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Description")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
-     * @ORM\Column(name="description", type="integer")
-     * 
      */
     private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set intro
@@ -60,7 +75,7 @@ class Evenement
      * @param \IfRPGMaker\HistoireBundle\Entity\Description $description
      * @return Evenement
      */
-    public function setDescription(\IfRPGMaker\HistoireBundle\Entity\Description $description)
+    public function setDescription(\IfRPGMaker\HistoireBundle\Entity\Description $description = null)
     {
         $this->description = $description;
     
@@ -75,19 +90,5 @@ class Evenement
     public function getDescription()
     {
         return $this->description;
-    }
-    
-    public function __toString() {
-        return substr($this->intro.getContenu(), 0, 30)." - ".substr($this->description->getContenu(), 0, 30);
-    }
-    
-    public function __construct(\IfRPGMaker\HistoireBundle\Entity\Intro $intro, 
-            \IfRPGMaker\HistoireBundle\Entity\Description $description) {
-        $this->intro = $intro->getId();
-        $this->description = $description->getId();
-    }
-    
-    public function getArrayIds() {
-        return array('intro' => $this->intro->getId(), 'description' => $this->description->getId());
     }
 }

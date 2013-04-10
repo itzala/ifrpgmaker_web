@@ -1,29 +1,28 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Syst&egrave;me de jeu Editer {% endblock %}
+{% extends "SystemeJeuBundle::base.html.twig" %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block titre %} Race edit {% endblock %}
+
 {% block body %}
-    {{ parent() }}
-    <section>
+<form action="{{ path('race_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
 
-    <form action="{{ path('systeme_jeu_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Editer</button>
-        </p>
-    </form>
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('systeme_jeu') }}">
-                Retour
-            </a>
-        </li>
-        <li>
-            <form action="{{ path('systeme_jeu_delete', { 'id': entity.id }) }}" method="post">
-                {{ form_widget(delete_form) }}
-                <button type="submit">Supprimer</button>
-            </form>
-        </li>
-    </ul>
-    </section>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('race') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('race_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
 {% endblock %}

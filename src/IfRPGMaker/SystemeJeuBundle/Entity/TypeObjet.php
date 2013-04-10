@@ -27,6 +27,13 @@ class TypeObjet
      * @ORM\Column(name="nom", type="string", length=40)
      */
     private $nom;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\PartieCorps")
+     */
+    private $partie_corps;
 
 
     /**
@@ -60,5 +67,28 @@ class TypeObjet
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set partie_corps
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\PartieCorps $partieCorps
+     * @return TypeObjet
+     */
+    public function setPartieCorps(\IfRPGMaker\SystemeJeuBundle\Entity\PartieCorps $partieCorps = null)
+    {
+        $this->partie_corps = $partieCorps;
+    
+        return $this;
+    }
+
+    /**
+     * Get partie_corps
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\PartieCorps 
+     */
+    public function getPartieCorps()
+    {
+        return $this->partie_corps;
     }
 }

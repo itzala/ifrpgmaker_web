@@ -1,0 +1,19 @@
+{% extends "SiteBundle:Site:index.html.twig" %}
+
+
+
+{% block nav_partie %}
+<aside>
+    <ul>
+        <li><a href="{{path("systemejeu")}}">Systeme de Jeu</a></li>
+        <li><a href="{{path("taille")}}">Taille</a></li>
+        <li><a href="{{path("objet")}}">Objet</a></li>
+        <li><a href="{{path("typeobjet")}}">Type d'Objet</a></li>
+        <li><a href="{{path("caracteristique")}}">Caractéristique</a></li>
+        <li><a href="{{path("race")}}">Race</a></li>
+        <li><a href="{{path("metier")}}">Métier</a></li>
+        <li><a href="{{path("classe")}}">Classe</a></li>
+        <li><a href="{{path("partiecorps")}}">Partie du Corps</a></li>
+    </ul>
+</aside>
+{% endblock %}

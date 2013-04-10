@@ -27,6 +27,13 @@ class Metier
      * @ORM\Column(name="intitule", type="string", length=40)
      */
     private $intitule;
+    
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu")
+     */
+    private $systeme_jeu;
 
 
     /**
@@ -60,5 +67,28 @@ class Metier
     public function getIntitule()
     {
         return $this->intitule;
+    }
+
+    /**
+     * Set systeme_jeu
+     *
+     * @param \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu
+     * @return Metier
+     */
+    public function setSystemeJeu(\IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu $systemeJeu = null)
+    {
+        $this->systeme_jeu = $systemeJeu;
+    
+        return $this;
+    }
+
+    /**
+     * Get systeme_jeu
+     *
+     * @return \IfRPGMaker\SystemeJeuBundle\Entity\SystemeJeu 
+     */
+    public function getSystemeJeu()
+    {
+        return $this->systeme_jeu;
     }
 }

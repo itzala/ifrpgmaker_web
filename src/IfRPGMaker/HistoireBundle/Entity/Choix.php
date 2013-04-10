@@ -19,48 +19,21 @@ class Choix
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-        
     private $id;
-
+    
+    
     /**
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Evenement")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="intro")
-     * @ORM\Column(name="intro")
-     * 
      */
-    private $intro;
+    private $evenement;
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Evenement")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="description")
-     * @ORM\Column(name="description")
-     * 
-     */
-    private $description;
-    
-    
-    /**
+     *
      * @ORM\ManyToOne(targetEntity="IfRPGMaker\HistoireBundle\Entity\Choix")
-     * @ORM\JoinColumn(nullable=true)
-     * @ORM\Column(name="parent")
-     * 
      */
     private $parent;
-    
-    
-    public function __construct($event = NULL) {
-        if ($event == NULL) {
-            $this->intro = " ";
-            $this->description = " ";
-        }
-        else {
-            $this->intro = $event->getIntro();
-            $this->description = $event->getDescription();
-        }
-    }
-    
-    
 
 
     /**
@@ -74,12 +47,35 @@ class Choix
     }
 
     /**
+     * Set evenement
+     *
+     * @param \IfRPGMaker\HistoireBundle\Entity\Evenement $evenement
+     * @return Choix
+     */
+    public function setEvenement(\IfRPGMaker\HistoireBundle\Entity\Evenement $evenement = null)
+    {
+        $this->evenement = $evenement;
+    
+        return $this;
+    }
+
+    /**
+     * Get evenement
+     *
+     * @return \IfRPGMaker\HistoireBundle\Entity\Evenement 
+     */
+    public function getEvenement()
+    {
+        return $this->evenement;
+    }
+
+    /**
      * Set parent
      *
      * @param \IfRPGMaker\HistoireBundle\Entity\Choix $parent
      * @return Choix
      */
-    public function setParent($parent)
+    public function setParent(\IfRPGMaker\HistoireBundle\Entity\Choix $parent = null)
     {
         $this->parent = $parent;
     
@@ -94,60 +90,5 @@ class Choix
     public function getParent()
     {
         return $this->parent;
-    }
-    
-    public function getArrayIds()
-    {
-        return array('id' => $this->id);
-    }
-
-    /**
-     * Set intro
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Evenement $intro
-     * @return Choix
-     */
-    public function setIntro(\IfRPGMaker\HistoireBundle\Entity\Evenement $intro = null)
-    {
-        $this->intro = $intro;
-    
-        return $this;
-    }
-
-    /**
-     * Get intro
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Evenement 
-     */
-    public function getIntro()
-    {
-        return $this->intro->getIntro();
-    }
-
-    /**
-     * Set description
-     *
-     * @param \IfRPGMaker\HistoireBundle\Entity\Evenement $description
-     * @return Choix
-     */
-    public function setDescription(\IfRPGMaker\HistoireBundle\Entity\Evenement $description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return \IfRPGMaker\HistoireBundle\Entity\Evenement 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-    
-    public function __toString() {
-        return $this->id."-".$this->getIntro();
     }
 }

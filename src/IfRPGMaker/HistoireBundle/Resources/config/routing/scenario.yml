@@ -1,0 +1,30 @@
+scenario:
+    pattern:  /
+    defaults: { _controller: "HistoireBundle:Scenario:index" }
+
+scenario_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "HistoireBundle:Scenario:show" }
+
+scenario_new:
+    pattern:  /new
+    defaults: { _controller: "HistoireBundle:Scenario:new" }
+
+scenario_create:
+    pattern:  /create
+    defaults: { _controller: "HistoireBundle:Scenario:create" }
+    requirements: { _method: post }
+
+scenario_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "HistoireBundle:Scenario:edit" }
+
+scenario_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "HistoireBundle:Scenario:update" }
+    requirements: { _method: post }
+
+scenario_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "HistoireBundle:Scenario:delete" }
+    requirements: { _method: post }

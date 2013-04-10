@@ -12,15 +12,32 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Actions
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Id
      * @ORM\Column(name="action", type="string", length=40)
      */
     private $action;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set action
@@ -28,7 +45,7 @@ class Actions
      * @param string $action
      * @return Actions
      */
-    public function setKeyword($action)
+    public function setAction($action)
     {
         $this->action = $action;
     
@@ -38,20 +55,10 @@ class Actions
     /**
      * Get action
      *
-     * @return \IfRPGMaker\ActionsBundle\Entity\Actions $action
+     * @return string 
      */
-    public function getKeyword()
+    public function getAction()
     {
         return $this->action;
-    }
-
-
-    public function __toString() {
-        return $this->action;
-    }
-    
-    public function getArrayIds()
-    {
-        return array('action' => $this->action);
     }
 }

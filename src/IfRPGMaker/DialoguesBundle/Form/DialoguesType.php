@@ -6,31 +6,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Doctrine\ORM\EntityRepository;
-
-class ChoixType extends AbstractType
+class DialoguesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("perso", 'entity', array(
-                'class' => 'DialoguesBundle:perso',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('c');
-                    },
-            ))
-            ->add("description", 'entity', array(
-                'class' => 'DialoguesBundle:Description',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('c');
-                    },
-            ))
-            ->add("dialogues", 'entity', array(
-                'class' => 'DialoguesBundle:dialogues',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('c');
-                    },
-            ))
+            ->add('dialogues')
+            ->add('auteur')
+            ->add('description')
+            ->add('perso')
         ;
     }
 
@@ -43,6 +27,6 @@ class ChoixType extends AbstractType
 
     public function getName()
     {
-        return 'ifrpgmaker_Dialoguesbundle_choixtype';
+        return 'ifrpgmaker_dialoguesbundle_dialoguestype';
     }
 }

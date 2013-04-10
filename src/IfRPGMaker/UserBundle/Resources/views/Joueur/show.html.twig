@@ -1,37 +1,37 @@
-{% extends "::base.html.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
-{% block titre %} Joueur{% endblock %}
-{% block body %}
-{{ parent() }}
-    <section>
-        <h1>Joueur</h1>
+<h1>Joueur</h1>
 
-        <table class="record_properties">
-            <tbody>
-                <tr>
-                    <th>Pseudo</th>
-                    <td>{{ entity.pseudo }}</td>
-                </tr>                
-            </tbody>
-        </table>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Pseudo</th>
+            <td>{{ entity.pseudo }}</td>
+        </tr>
+        <tr>
+            <th>Mdp</th>
+            <td>{{ entity.mdp }}</td>
+        </tr>
+    </tbody>
+</table>
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('joueur') }}">
-                    Retour
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('joueur_edit', { 'id': entity.pseudo }) }}">
-                    Editer
-                </a>
-            </li>
-            <li>
-                <form action="{{ path('joueur_delete', { 'id': entity.pseudo }) }}" method="post">
-                    {{ form_widget(delete_form) }}
-                    <button type="submit">Supprimer</button>
-                </form>
-            </li>
-        </ul>
-</section>
-{% endblock %}
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('joueur') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('joueur_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('joueur_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

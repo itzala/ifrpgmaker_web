@@ -1,21 +1,47 @@
-{% extends "::base.html.twig" %}
+{% extends "HistoireBundle::base.html.twig" %}
 
-{% block title %}{{parent()}} | Index des histoires {% endblock %}
+{% block title %}{{parent()}}{% endblock %}
 
-{% block titre %} Liste des histoires {% endblock %}       
+{% block titre %} Histoire list {% endblock %}
 
 {% block body %}
-    {{ parent() }}
-        
-    <section>
-        <p>
-            Sur cette page, vous trouverez la liste des histoires d&eacute;j&agrave; cr&eacute;&eacute;es avec leur cr&eacute;ateur.
-        </p>
-        <p>
-            Vous pouvez choisir d'aller voir les <a href="{{path('intro')}}">intros</a>, 
-            les <a href="{{path('description')}}"> descriptions</a>,
-            les <a href="{{path('choix')}}"> choix</a>,
-            les <a href="{{path('evenement')}}">évènements</a>
-        </p>
-    </section>
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Date_creation</th>
+            <th>Date_modification</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('histoire_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.titre }}</td>
+            <td>{% if entity.datecreation %}{{ entity.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.datemodification %}{{ entity.datemodification|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('histoire_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('histoire_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('histoire_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
 {% endblock %}
