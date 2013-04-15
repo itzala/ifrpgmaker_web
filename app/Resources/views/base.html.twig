@@ -24,8 +24,6 @@
                     <li class="item_menu"><a href="{{ path("joueur") }}">Joueurs</a></li>                        
                 </ul>
                 {% endblock %}
-                {% block nav_partie %}
-                {% endblock %}
             </nav>
 
         {% block flash %}
@@ -44,9 +42,14 @@
          {% endif %}
         {% endblock %}
            
-        {% block body %}     
-        {% endblock %}
+            <section>
+            {% block body %}     
+            {% endblock %}
+            </section>
         
+                {% block nav_partie %}
+                {% endblock %}
+
         
         {% block footer %}
             <footer>
